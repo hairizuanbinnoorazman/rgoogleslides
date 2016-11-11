@@ -1,4 +1,4 @@
-#' Check existence of presentation slide
+#' Get Google Slides Properties
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
 #' @export
@@ -18,6 +18,8 @@ get_slides_properties <- function(id = NULL){
   result_list <- fromJSON(result_content)
   return(result_list)
 }
+
+#' Get a single page of a Google Slides property
 
 #' Replace all text within the slide
 #' @importFrom httr config accept_json content
