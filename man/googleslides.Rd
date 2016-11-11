@@ -10,7 +10,9 @@ Previously, when one is working with in the Google Ecosystem (Using Google Drive
 there is hardly any good workflow of getting the values calculated from R and getting that into
 Google Slides. The normal and easy way out would be to just copy your work over but when you have a
 number of analysis to present with a lot of changes between each environment, it just becomes quite
-cumbersome. Hence, this package is created to resolve such issues, providing a smoother workflow
+cumbersome.
+
+Hence, this package is created to resolve such issues, providing a smoother workflow
 for such cases.
 }
 
