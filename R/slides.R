@@ -20,6 +20,23 @@ get_slides_properties <- function(id = NULL){
 }
 
 #' Get a single page of a Google Slides property
+#' @export
+get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
+  # Get endpoint url
+  url <- get_endpoint("slides.endpoint.page.get", id, pageObjectId)
+  # Get token
+  token <- get_token()
+  config <- httr::config(token=token)
+  # Get slide properties
+  result <- httr::GET(url, config = config, accept_json())
+  result_content <- content(result, "text")
+  result_list <- fromJSON(result_content)
+  if(httr::status_code(result) != 200){
+    stop(result_list$error$message)
+  }
+  # Process and return results
+  return(result_list)
+}
 
 #' Replace all text within the slide
 #' @importFrom httr config accept_json content
@@ -32,8 +49,14 @@ replace_all_text <- function(id=NULL, replaceText=NULL, text=NULL, matchCase=TRU
   token <- get_token()
   config <- httr::config(token=token)
   # Creating the list object
-  replace_all_text_list = list(replaceAllText = list(replaceText = replaceText, containsText = list(text = text, matchCase = matchCase)))
-  body_params <- list(requests = c(replace_all_text_list))
+  requests_list = list()
+  iterator <- 1
+  while(iterator <= length(replaceText)){
+    replace_all_text_list <- list(replaceAllText = list(replaceText = replaceText[iterator], containsText = list(text = text[iterator], matchCase = matchCase)))
+    requests_list[[iterator]] <- replace_all_text_list
+    iterator <- iterator + 1
+  }
+  body_params <- list(requests=requests_list)
   # Modify slides
   result <- httr::POST(url, config = config, accept_json(), body = body_params, encode = "json")
   # Process results

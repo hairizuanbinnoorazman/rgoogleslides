@@ -5,7 +5,8 @@
 \title{Generate endpoint for the Google Slides API
 Temporarily available}
 \usage{
-get_endpoint(typeOfEndpoint = "slides.endpoint.get", id = NULL)
+get_endpoint(typeOfEndpoint = "slides.endpoint.get", id = NULL,
+  pageObjectId = NULL)
 }
 \description{
 Generate endpoint for the Google Slides API

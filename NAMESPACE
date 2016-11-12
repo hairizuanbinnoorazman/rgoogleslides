@@ -2,6 +2,7 @@
 
 export(authorize)
 export(get_endpoint)
+export(get_slide_page_properties)
 export(get_slides_properties)
 export(replace_all_text)
 importFrom(httr,accept_json)

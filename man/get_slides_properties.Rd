@@ -2,11 +2,11 @@
 % Please edit documentation in R/slides.R
 \name{get_slides_properties}
 \alias{get_slides_properties}
-\title{Check existence of presentation slide}
+\title{Get Google Slides Properties}
 \usage{
 get_slides_properties(id = NULL)
 }
 \description{
-Check existence of presentation slide
+Get Google Slides Properties
 }
 
