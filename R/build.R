@@ -90,11 +90,15 @@ build_insert_text <- function(objectId=NULL, rowIndex=NULL, columnIndex=NULL,
   # Loop through the object id vector
   iterator <- 1
   while(iterator <= length(objectId)){
-    insert_text_list <- list(insertText = list(objectId = objectId[iterator],
-                                               cellLocation = list(rowIndex = rowIndex[iterator],
-                                                                   columnIndex = columnIndex[iterator]),
-                                               text = text[iterator],
-                                               insertionIndex = insertionIndex[iterator]))
+    insert_text_list <- list(insertText = list(objectId = objectId[iterator], text = text[iterator]))
+    if(!is.null(rowIndex) & !is.null(columnIndex)){
+      insert_text_list[["insertText"]][["cellLocation"]] = list()
+      insert_text_list[["insertText"]][["cellLocation"]][["rowIndex"]] <- rowIndex[iterator]
+      insert_text_list[["insertText"]][["cellLocation"]][["columnIndex"]] <- columnIndex[iterator]
+    }
+    if(!is.null(insertionIndex)){
+      insert_text_list[["insertText"]][["insertionIndex"]] <- insertionIndex[iterator]
+    }
     requests_list[[iterator]] <- insert_text_list
     iterator <- iterator + 1
   }

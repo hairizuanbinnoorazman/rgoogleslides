@@ -17,6 +17,11 @@ build_create_slide(no_of_slides = 1, insertionIndex = NULL,
 
 \item{predefinedLayout}{A character vector that provides guidance on which layout the new slide
 is to follow. The ones declared here}
+
+\item{objectId}{A character vector that is to be used to give names to new slides created via the
+slides API}
+
+\item{requests_list}{A list of requests that is to be passed to the post_batchUpdate function.}
 }
 \description{
 Building create slide request

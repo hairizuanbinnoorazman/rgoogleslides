@@ -12,6 +12,8 @@ build_update_slides_position(slideObjectIds = NULL, insertionIndex = NULL,
 
 \item{insertionIndex}{Numeric Vector. This is where the slides selected in
 slideobjectids parameter is inserted into}
+
+\item{requests_list}{A list of requests that is to be passed to the post_batchUpdate function.}
 }
 \description{
 Building update slides position request

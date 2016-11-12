@@ -7,6 +7,18 @@
 build_replace_all_text(replaceText = NULL, text = NULL, matchCase = TRUE,
   requests_list = NULL)
 }
+\arguments{
+\item{replaceText}{A character vector of text that would replace the ones in the text parameter.
+The order of the replaceText matters}
+
+\item{text}{A character vector of text that would replaced by the ones in the replaceText parameter.
+The order of the text matters}
+
+\item{matchCase}{A boolean that takes in only TRUE or FALSE only. This would be applied across all
+requests}
+
+\item{requests_list}{A list of requests that is to be passed to the post_batchUpdate function.}
+}
 \description{
 Building replace all text request
 }

@@ -9,6 +9,15 @@ replace_all_text(id = NULL, replaceText = NULL, text = NULL,
 }
 \arguments{
 \item{id}{ID of the presentation slide}
+
+\item{replaceText}{A character vector of text that would replace the ones in the text parameter.
+The order of the replaceText matters}
+
+\item{text}{A character vector of text that would replaced by the ones in the replaceText parameter.
+The order of the text matters}
+
+\item{matchCase}{A boolean that takes in only TRUE or FALSE only. This would be applied across all
+requests}
 }
 \description{
 Replace all text within the slide

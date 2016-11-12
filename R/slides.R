@@ -100,3 +100,15 @@ update_slides_position <- function(id=NULL, slideObjectIds=NULL, insertionIndex=
   result_list <- post_batchUpdate(id, requests_list)
   return(result_list)
 }
+
+#' Insert text to shapes/tables
+#' @inheritParams build_insert_text
+#' @param id ID of the presentation side
+#' @export
+insert_text <- function(id=NULL, objectId=NULL, rowIndex=NULL, columnIndex=NULL,
+                        text=NULL, insertionIndex=NULL){
+  # Create the list object
+  requests_list <- build_insert_text(objectId, rowIndex, columnIndex, text, insertionIndex)
+  result_list <- post_batchUpdate(id, requests_list)
+  return(result_list)
+}

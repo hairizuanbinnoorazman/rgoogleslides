@@ -18,6 +18,9 @@ create_slide(id = NULL, no_of_slides = 1, insertionIndex = NULL,
 
 \item{predefinedLayout}{A character vector that provides guidance on which layout the new slide
 is to follow. The ones declared here}
+
+\item{objectId}{A character vector that is to be used to give names to new slides created via the
+slides API}
 }
 \description{
 Add page in slides
