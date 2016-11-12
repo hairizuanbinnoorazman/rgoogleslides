@@ -1,6 +1,7 @@
 #' Send a POST request to do a batch update on the slides
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
+#' @export
 post_batchUpdate <- function(id=NULL, requests_list=NULL){
   # Get endpoint url
   url <- get_endpoint("slides.endpoint.batchUpdate", id)
