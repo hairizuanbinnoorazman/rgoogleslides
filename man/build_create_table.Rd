@@ -7,6 +7,17 @@
 build_create_table(pageObjectId = NULL, rows = NULL, columns = NULL,
   objectId = NULL, requests_list = NULL)
 }
+\arguments{
+\item{pageObjectId}{A character vector with the page on which the table will be created}
+
+\item{rows}{A numeric vector with the row index of the data to be filled in the table. Only for tables}
+
+\item{columns}{A numeric vector with the column index of the data to be filled in the table. Only for tables}
+
+\item{objectId}{Optional Field. A character vector to name the object created instead of leaving it to Google}
+
+\item{requests_list}{A list of requests that is to be passed to the post_batchUpdate function.}
+}
 \description{
 Building create table request
 }

@@ -9,6 +9,14 @@ create_table(id = NULL, pageObjectId = NULL, rows = NULL,
 }
 \arguments{
 \item{id}{ID of the presentation slide}
+
+\item{pageObjectId}{A character vector with the page on which the table will be created}
+
+\item{rows}{A numeric vector with the row index of the data to be filled in the table. Only for tables}
+
+\item{columns}{A numeric vector with the column index of the data to be filled in the table. Only for tables}
+
+\item{objectId}{Optional Field. A character vector to name the object created instead of leaving it to Google}
 }
 \description{
 Create table to a page in a slide
