@@ -8,6 +8,16 @@ build_create_slide(no_of_slides = 1, insertionIndex = NULL,
   layoutId = NULL, predefinedLayout = NULL, objectId = NULL,
   requests_list = NULL)
 }
+\arguments{
+\item{no_of_slides}{A number to indicate the number of slides that is to be added}
+
+\item{insertionIndex}{A numeric vector on where the slide is to be added}
+
+\item{layoutId}{A character vector that provides guidance on which layout the new slide is to follow}
+
+\item{predefinedLayout}{A character vector that provides guidance on which layout the new slide
+is to follow. The ones declared here}
+}
 \description{
 Building create slide request
 }

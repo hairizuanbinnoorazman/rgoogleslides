@@ -1,4 +1,5 @@
 #' Get Google Slides Properties
+#' @param id ID of the presentation slide
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
 #' @export
@@ -20,6 +21,7 @@ get_slides_properties <- function(id = NULL){
 }
 
 #' Get a single page of a Google Slides property
+#' @param id ID of the presentation slide
 #' @export
 get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
   # Get endpoint url
@@ -39,6 +41,8 @@ get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
 }
 
 #' Replace all text within the slide
+#' @inheritParams build_replace_all_text
+#' @param id ID of the presentation slide
 #' @export
 replace_all_text <- function(id=NULL, replaceText=NULL, text=NULL, matchCase=TRUE){
   # Creating the list object
@@ -54,6 +58,8 @@ replace_all_text <- function(id=NULL, replaceText=NULL, text=NULL, matchCase=TRU
 }
 
 #' Add page in slides
+#' @inheritParams build_create_slide
+#' @param id ID of the presentation slide
 #' @export
 create_slide <- function(id=NULL, no_of_slides=1, insertionIndex=NULL,
                          layoutId=NULL, predefinedLayout=NULL,
@@ -68,4 +74,26 @@ create_slide <- function(id=NULL, no_of_slides=1, insertionIndex=NULL,
   } else {
     return(paste(occurencesChanged, "occurence(s) changed."))
   }
+}
+
+#' Delete object in slides
+#' @inheritParams build_delete_object
+#' @param id ID of the presentation slide
+#' @export
+delete_object <- function(id=NULL, objectId=NULL){
+  # Creating the list object
+  requests_list <- build_delete_object(objectId)
+  result_list <- post_batchUpdate(id, requests_list)
+  return(result_list)
+}
+
+#' Update slides position
+#' @inheritParams build_update_slides_position
+#' @param id ID of the presentation slide
+#' @export
+update_slides_position <- function(id=NULL, slideObjectIds=NULL, insertionIndex=NULL){
+  # Creating the list object
+  requests_list <- build_update_slides_position(slideObjectIds, insertionIndex)
+  result_list <- post_batchUpdate(id, requests_list)
+  return(result_list)
 }
