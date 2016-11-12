@@ -1,6 +1,6 @@
 #' Building replace all text request
 #' @export
-build_replace_all_text <- function(requests_list=NULL, replaceText=NULL, text=NULL, matchCase=TRUE){
+build_replace_all_text <- function(replaceText=NULL, text=NULL, matchCase=TRUE, requests_list=NULL){
   if(is.null(requests_list)){
     warning("No/Invalid request_list provided. request_list reinitialized")
     requests_list <- list()

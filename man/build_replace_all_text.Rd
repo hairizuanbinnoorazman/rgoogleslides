@@ -4,8 +4,8 @@
 \alias{build_replace_all_text}
 \title{Building replace all text request}
 \usage{
-build_replace_all_text(requests_list = NULL, replaceText = NULL,
-  text = NULL, matchCase = TRUE)
+build_replace_all_text(replaceText = NULL, text = NULL, matchCase = TRUE,
+  requests_list = NULL)
 }
 \description{
 Building replace all text request

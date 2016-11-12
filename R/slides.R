@@ -39,8 +39,6 @@ get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
 }
 
 #' Replace all text within the slide
-#' @importFrom httr config accept_json content
-#' @importFrom jsonlite fromJSON
 #' @export
 replace_all_text <- function(id=NULL, replaceText=NULL, text=NULL, matchCase=TRUE){
   # Creating the list object
