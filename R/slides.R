@@ -103,12 +103,24 @@ update_slides_position <- function(id=NULL, slideObjectIds=NULL, insertionIndex=
 
 #' Insert text to shapes/tables
 #' @inheritParams build_insert_text
-#' @param id ID of the presentation side
+#' @param id ID of the presentation slide
 #' @export
 insert_text <- function(id=NULL, objectId=NULL, rowIndex=NULL, columnIndex=NULL,
                         text=NULL, insertionIndex=NULL){
   # Create the list object
   requests_list <- build_insert_text(objectId, rowIndex, columnIndex, text, insertionIndex)
+  result_list <- post_batchUpdate(id, requests_list)
+  return(result_list)
+}
+
+#' Create table to a page in a slide
+#' @inheritParams build_create_table
+#' @param id ID of the presentation slide
+#' @export
+create_table <- function(id=NULL, pageObjectId=NULL,
+                         rows=NULL, columns=NULL, objectId=NULL){
+  # Create the list object
+  requests_list <- build_create_table(objectId, pageObjectId, rows, columns)
   result_list <- post_batchUpdate(id, requests_list)
   return(result_list)
 }

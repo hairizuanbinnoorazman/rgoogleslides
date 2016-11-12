@@ -8,7 +8,7 @@ insert_text(id = NULL, objectId = NULL, rowIndex = NULL,
   columnIndex = NULL, text = NULL, insertionIndex = NULL)
 }
 \arguments{
-\item{id}{ID of the presentation side}
+\item{id}{ID of the presentation slide}
 
 \item{objectId}{A character vector of objects to insert text into. You can only insert text in
 tables and shapes}

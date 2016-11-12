@@ -2,11 +2,13 @@
 
 export(authorize)
 export(build_create_slide)
+export(build_create_table)
 export(build_delete_object)
 export(build_insert_text)
 export(build_replace_all_text)
 export(build_update_slides_position)
 export(create_slide)
+export(create_table)
 export(delete_object)
 export(get_endpoint)
 export(get_slide_page_properties)

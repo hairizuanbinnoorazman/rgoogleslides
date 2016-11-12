@@ -148,3 +148,24 @@ build_update_slides_position <- function(slideObjectIds=NULL, insertionIndex=NUL
   }
   return(requests_list)
 }
+
+#' Building create table request
+#' @export
+build_create_table <- function(pageObjectId=NULL, rows=NULL, columns=NULL,
+                               objectId=NULL, requests_list=NULL){
+  # Check to see if there is any requests_list provided. Else, reinitialize it.
+  if(is.null(requests_list)){
+    warning("No/Invalid request_list provided. request_list reinitialized")
+    requests_list <- list()
+  }
+  # Loop through the length of slide object ids
+  iterator <- 1
+  while(iterator <= length(pageObjectId)){
+    create_table_list <- list(createTable = list(elementProperties = list(pageObjectId = pageObjectId[iterator]),
+                                                 rows = rows[iterator],
+                                                 columns = columns[iterator]))
+    requests_list[[iterator]] <- create_table_list
+    iterator <- iterator + 1
+  }
+  return(requests_list)
+}
