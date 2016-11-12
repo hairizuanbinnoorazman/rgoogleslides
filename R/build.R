@@ -150,6 +150,11 @@ build_update_slides_position <- function(slideObjectIds=NULL, insertionIndex=NUL
 }
 
 #' Building create table request
+#' @param pageObjectId A character vector with the page on which the table will be created
+#' @param rows A numeric vector with the row index of the data to be filled in the table. Only for tables
+#' @param columns A numeric vector with the column index of the data to be filled in the table. Only for tables
+#' @param objectId Optional Field. A character vector to name the object created instead of leaving it to Google
+#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
 build_create_table <- function(pageObjectId=NULL, rows=NULL, columns=NULL,
                                objectId=NULL, requests_list=NULL){
