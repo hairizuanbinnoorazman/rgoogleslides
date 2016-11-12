@@ -120,7 +120,7 @@ insert_text <- function(id=NULL, objectId=NULL, rowIndex=NULL, columnIndex=NULL,
 create_table <- function(id=NULL, pageObjectId=NULL,
                          rows=NULL, columns=NULL, objectId=NULL){
   # Create the list object
-  requests_list <- build_create_table(objectId, pageObjectId, rows, columns)
+  requests_list <- build_create_table(pageObjectId, rows, columns, objectId)
   result_list <- post_batchUpdate(id, requests_list)
   return(result_list)
 }
