@@ -52,3 +52,18 @@ replace_all_text <- function(id=NULL, replaceText=NULL, text=NULL, matchCase=TRU
     return(paste(occurencesChanged, "occurence(s) changed."))
   }
 }
+
+#' Add page in slides
+#' @export
+create_slide <- function(id=NULL){
+  # Creating the list object
+  requests_list <- build_create_slide()
+  result_list <- post_batchUpdate(id, requests_list)
+  # Check the occurencesChanged field
+  occurencesChanged <- result_list$replies$replaceAllText$occurrencesChanged
+  if(is.null(occurencesChanged)){
+    return("No changes applied to slides.")
+  } else {
+    return(paste(occurencesChanged, "occurence(s) changed."))
+  }
+}
