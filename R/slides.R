@@ -43,29 +43,9 @@ get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
 #' @importFrom jsonlite fromJSON
 #' @export
 replace_all_text <- function(id=NULL, replaceText=NULL, text=NULL, matchCase=TRUE){
-  # Get endpoint url
-  url <- get_endpoint("slides.endpoint.batchUpdate", id)
-  # Get token
-  token <- get_token()
-  config <- httr::config(token=token)
   # Creating the list object
-  requests_list = list()
-  iterator <- 1
-  while(iterator <= length(replaceText)){
-    replace_all_text_list <- list(replaceAllText = list(replaceText = replaceText[iterator], containsText = list(text = text[iterator], matchCase = matchCase)))
-    requests_list[[iterator]] <- replace_all_text_list
-    iterator <- iterator + 1
-  }
-  body_params <- list(requests=requests_list)
-  # Modify slides
-  result <- httr::POST(url, config = config, accept_json(), body = body_params, encode = "json")
-  # Process results
-  result_content <- content(result, "text")
-  result_list <- fromJSON(result_content)
-  # If endpoint return url status other than 200, return error message
-  if(httr::status_code(result) != 200){
-    stop(result_list$error$message)
-  }
+  requests_list <- build_replace_all_text(replaceText, text, matchCase)
+  result_list <- post_batchUpdate(id, requests_list)
   # Check the occurencesChanged field
   occurencesChanged <- result_list$replies$replaceAllText$occurrencesChanged
   if(is.null(occurencesChanged)){
