@@ -1,4 +1,11 @@
 #' Building replace all text request
+#' @param replaceText A character vector of text that would replace the ones in the text parameter.
+#' The order of the replaceText matters
+#' @param text A character vector of text that would replaced by the ones in the replaceText parameter.
+#' The order of the text matters
+#' @param matchCase A boolean that takes in only TRUE or FALSE only. This would be applied across all
+#' requests
+#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
 build_replace_all_text <- function(replaceText=NULL, text=NULL, matchCase=TRUE, requests_list=NULL){
   if(is.null(requests_list)){
@@ -20,6 +27,9 @@ build_replace_all_text <- function(replaceText=NULL, text=NULL, matchCase=TRUE, 
 #' @param layoutId A character vector that provides guidance on which layout the new slide is to follow
 #' @param predefinedLayout A character vector that provides guidance on which layout the new slide
 #' is to follow. The ones declared here
+#' @param objectId A character vector that is to be used to give names to new slides created via the
+#' slides API
+#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
 build_create_slide <- function(no_of_slides=1, insertionIndex=NULL,
                                layoutId=NULL, predefinedLayout=NULL,
@@ -60,6 +70,37 @@ build_create_slide <- function(no_of_slides=1, insertionIndex=NULL,
   return(requests_list)
 }
 
+#' Building insert text request
+#' @param objectId A character vector of objects to insert text into. You can only insert text in
+#' tables and shapes
+#' @param rowIndex A numeric vector of rows to insert the text into
+#' @param columnIndex A numeric vector of columns to insert the text into
+#' @param text A character vector of text which is to be inserted into the shape or table
+#' @param insertionIndex A numeric vector which indicate the starting point of how the text
+#' is to be inserted
+#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
+#' @export
+build_insert_text <- function(objectId=NULL, rowIndex=NULL, columnIndex=NULL,
+                              text=NULL, insertionIndex=NULL, requests_list=NULL){
+  # Check to see if there is any requests_list provided. Else, reinitialize it.
+  if(is.null(requests_list)){
+    warning("No/Invalid request_list provided. request_list reinitialized")
+    requests_list <- list()
+  }
+  # Loop through the object id vector
+  iterator <- 1
+  while(iterator <= length(objectId)){
+    insert_text_list <- list(insertText = list(objectId = objectId[iterator],
+                                               cellLocation = list(rowIndex = rowIndex[iterator],
+                                                                   columnIndex = columnIndex[iterator]),
+                                               text = text[iterator],
+                                               insertionIndex = insertionIndex[iterator]))
+    requests_list[[iterator]] <- insert_text_list
+    iterator <- iterator + 1
+  }
+  return(requests_list)
+}
+
 #' Building delete object request
 #' @param objectId A character vector of object ids that is to be deleted from the slides
 #' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
@@ -84,6 +125,7 @@ build_delete_object <- function(objectId=NULL, requests_list=NULL){
 #' @param slideObjectIds List of Character Vector.
 #' @param insertionIndex Numeric Vector. This is where the slides selected in
 #' slideobjectids parameter is inserted into
+#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
 build_update_slides_position <- function(slideObjectIds=NULL, insertionIndex=NULL,
                                          requests_list=NULL){
