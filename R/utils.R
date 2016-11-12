@@ -13,7 +13,7 @@ get_endpoint <- function(typeOfEndpoint = "slides.endpoint.get", id = NULL, page
       stop("pageObjectId is not a character")
     }
     url_temp <- gsub("{presentationId}", id, getOption(typeOfEndpoint), fixed=TRUE)
-    url_temp <- gsub("{pageObjectId}", id, url_temp, fixed=TRUE)
+    url_temp <- gsub("{pageObjectId}", pageObjectId, url_temp, fixed=TRUE)
     return(url_temp)
   }
   return(gsub("{presentationId}", id, getOption(typeOfEndpoint), fixed=TRUE))
