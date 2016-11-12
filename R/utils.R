@@ -18,3 +18,34 @@ get_endpoint <- function(typeOfEndpoint = "slides.endpoint.get", id = NULL, page
   }
   return(gsub("{presentationId}", id, getOption(typeOfEndpoint), fixed=TRUE))
 }
+
+#' Convert dataframe to dataframe with rows and columns
+#' @param data Dataframe of the dataset that is to be converted so that it can be used with the google slides API
+#' @param headers Boolean to indicate whether to convert taking in mind of the headers or not
+#' @export
+dataframe_convert <- function(data=NULL, headers=TRUE){
+  temp_dataframe <- data.frame()
+  i <- 1
+  j <- 1
+  rowCorrection <- 1
+  if(headers){
+    header_names <- names(data)
+    while(j <= ncol(data)){
+      single_header <- data.frame(value = header_names[j], row = i - 1, column = j - 1)
+      temp_dataframe <- rbind(temp_dataframe, single_header)
+      j <- j + 1
+    }
+    j <- 1
+    rowCorrection <- 0
+  }
+  while(i <= nrow(data)){
+    while(j <= ncol(data)){
+      single_row <- data.frame(value = as.character(data[i, j]), row = i - rowCorrection, column = j - 1)
+      temp_dataframe <- rbind(temp_dataframe, single_row)
+      j <- j + 1
+    }
+    i <- i + 1
+    j <- 1
+  }
+  return(temp_dataframe)
+}
