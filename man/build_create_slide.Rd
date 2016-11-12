@@ -4,7 +4,9 @@
 \alias{build_create_slide}
 \title{Building create slide request}
 \usage{
-build_create_slide(requests_list = NULL)
+build_create_slide(no_of_slides = 1, insertionIndex = NULL,
+  layoutId = NULL, predefinedLayout = NULL, objectId = NULL,
+  requests_list = NULL)
 }
 \description{
 Building create slide request

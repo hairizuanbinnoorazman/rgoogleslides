@@ -4,7 +4,8 @@
 \alias{create_slide}
 \title{Add page in slides}
 \usage{
-create_slide(id = NULL)
+create_slide(id = NULL, no_of_slides = 1, insertionIndex = NULL,
+  layoutId = NULL, predefinedLayout = NULL, objectId = NULL)
 }
 \description{
 Add page in slides

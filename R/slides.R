@@ -55,9 +55,11 @@ replace_all_text <- function(id=NULL, replaceText=NULL, text=NULL, matchCase=TRU
 
 #' Add page in slides
 #' @export
-create_slide <- function(id=NULL){
+create_slide <- function(id=NULL, no_of_slides=1, insertionIndex=NULL,
+                         layoutId=NULL, predefinedLayout=NULL,
+                         objectId=NULL){
   # Creating the list object
-  requests_list <- build_create_slide()
+  requests_list <- build_create_slide(no_of_slides, insertionIndex, layoutId, predefinedLayout, objectId)
   result_list <- post_batchUpdate(id, requests_list)
   # Check the occurencesChanged field
   occurencesChanged <- result_list$replies$replaceAllText$occurrencesChanged
