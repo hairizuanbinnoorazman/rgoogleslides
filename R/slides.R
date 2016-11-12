@@ -22,6 +22,9 @@ get_slides_properties <- function(id = NULL){
 
 #' Get a single page of a Google Slides property
 #' @param id ID of the presentation slide
+#' @param pageObjectId The page ID of the presentation slide
+#' @importFrom httr config accept_json content
+#' @importFrom jsonlite fromJSON
 #' @export
 get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
   # Get endpoint url

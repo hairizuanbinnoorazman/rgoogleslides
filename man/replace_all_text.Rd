@@ -7,6 +7,9 @@
 replace_all_text(id = NULL, replaceText = NULL, text = NULL,
   matchCase = TRUE)
 }
+\arguments{
+\item{id}{ID of the presentation slide}
+}
 \description{
 Replace all text within the slide
 }

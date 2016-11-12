@@ -6,6 +6,9 @@
 \usage{
 get_slides_properties(id = NULL)
 }
+\arguments{
+\item{id}{ID of the presentation slide}
+}
 \description{
 Get Google Slides Properties
 }

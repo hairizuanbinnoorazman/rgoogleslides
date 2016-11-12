@@ -6,6 +6,11 @@
 \usage{
 get_slide_page_properties(id = NULL, pageObjectId = NULL)
 }
+\arguments{
+\item{id}{ID of the presentation slide}
+
+\item{pageObjectId}{The page ID of the presentation slide}
+}
 \description{
 Get a single page of a Google Slides property
 }
