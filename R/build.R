@@ -166,7 +166,7 @@ build_create_table <- function(pageElementProperty=NULL, rows=NULL, columns=NULL
   }
   # Loop through the length of slide object ids
   iterator <- 1
-  while(iterator <= length(pageObjectId)){
+  while(iterator <= length(pageElementProperty)){
     create_table_list <- list(createTable = list(elementProperties = pageElementProperty[[iterator]],
                                                  rows = rows[iterator],
                                                  columns = columns[iterator]))
