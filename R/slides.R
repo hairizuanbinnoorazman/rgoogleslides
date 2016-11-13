@@ -124,3 +124,14 @@ create_table <- function(id=NULL, pageElementProperty=NULL,
   result_list <- post_batchUpdate(id, requests_list)
   return(result_list)
 }
+
+#' Insert image to a page in a slide
+#' @inheritParams build_create_image
+#' @param id ID of the presenation slide
+#' @export
+create_image <- function(id=NULL, url=NULL, pageElementProperty=NULL, objectId=NULL){
+  # Create the list object
+  requests_list <- build_create_image(url, pageElementProperty, objectId)
+  result_list <- post_batchUpdate(id, requests_list)
+  return(result_list)
+}
