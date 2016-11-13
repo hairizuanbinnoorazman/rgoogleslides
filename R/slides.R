@@ -117,10 +117,10 @@ insert_text <- function(id=NULL, objectId=NULL, rowIndex=NULL, columnIndex=NULL,
 #' @inheritParams build_create_table
 #' @param id ID of the presentation slide
 #' @export
-create_table <- function(id=NULL, pageObjectId=NULL,
+create_table <- function(id=NULL, pageElementProperty=NULL,
                          rows=NULL, columns=NULL, objectId=NULL){
   # Create the list object
-  requests_list <- build_create_table(pageObjectId, rows, columns, objectId)
+  requests_list <- build_create_table(pageElementProperty, rows, columns, objectId)
   result_list <- post_batchUpdate(id, requests_list)
   return(result_list)
 }

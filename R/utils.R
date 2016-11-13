@@ -49,3 +49,18 @@ dataframe_convert <- function(data=NULL, headers=TRUE){
   }
   return(temp_dataframe)
 }
+
+#' Convenience function to return a value if the value is NA
+#' @description A function that checks and ensure that the value only returns null or a number.
+#' This function can only check one value at a time.
+#' @export
+check_validity <- function(value){
+  if(!is.null(value)){
+    if(is.na(value)){
+      return(NULL)
+    } else {
+      return(value)
+    }
+  }
+  return(value)
+}
