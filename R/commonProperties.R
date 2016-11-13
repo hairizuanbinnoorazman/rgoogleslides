@@ -12,7 +12,7 @@
 #' @param transformX (Optional) A list of numeric vector that tells how the object is to be located
 #' @param transformY (Optional) A list of numeric vector that tells how the object is to be located
 #' @export
-common_page_element_property <- function(pageObjectId=NULL,
+page_element_property <- function(pageObjectId=NULL,
                                          width_magnitude=NULL,
                                          height_magnitude=NULL,
                                          scaleX=NULL, scaleY=NULL,
