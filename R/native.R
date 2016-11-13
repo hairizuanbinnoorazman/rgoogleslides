@@ -2,6 +2,7 @@
 #' @inheritParams build_create_table
 #' @inheritParams dataframe_convert
 #' @inheritParams post_batchUpdate
+#' @param id ID of the presentation slide
 #' @export
 create_data_table <- function(id=NULL, pageObjectId=NULL, data=NULL, headers=TRUE){
   # First create the table to get the objectId

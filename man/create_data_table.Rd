@@ -8,6 +8,8 @@ create_data_table(id = NULL, pageObjectId = NULL, data = NULL,
   headers = TRUE)
 }
 \arguments{
+\item{id}{ID of the presentation slide}
+
 \item{pageObjectId}{A character vector with the page on which the table will be created}
 
 \item{data}{Dataframe of the dataset that is to be converted so that it can be used with the google slides API}
