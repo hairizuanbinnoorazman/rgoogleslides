@@ -50,6 +50,22 @@ dataframe_convert <- function(data=NULL, headers=TRUE){
   return(temp_dataframe)
 }
 
+#' Get the list of google drive url
+#' @export
+get_google_drive_urls <- function(imageId){
+  access_token <- get_token()$credentials$access_token
+  drive_api_url <- "https://www.googleapis.com/drive/v3/files/"
+  get_params <- paste0("?access_token=", access_token, "&alt=media")
+  url <- c()
+  iterator <- 1
+  while(iterator <= length(imageId)){
+    url_single <- paste0(drive_api_url, imageId, get_params)
+    url <- c(url, url_single)
+    iterator <- iterator + 1
+  }
+  return(url)
+}
+
 #' Convenience function to return a value if the value is NA
 #' @description A function that checks and ensure that the value only returns null or a number.
 #' This function can only check one value at a time.

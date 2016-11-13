@@ -22,7 +22,8 @@ authorize <- function(client.id = getOption("slides.client.id"),
   app <- oauth_app(appname = "googleslides", key = client.id, secret = client.secret)
   endpoint <- oauth_endpoints("google")
   token <- oauth2.0_token(endpoint = endpoint, app = app,
-                          scope = "https://www.googleapis.com/auth/presentations")
+                          scope = c("https://www.googleapis.com/auth/presentations",
+                                    "https://www.googleapis.com/auth/drive.readonly"))
   set_token(token)
   return(invisible(token))
 }

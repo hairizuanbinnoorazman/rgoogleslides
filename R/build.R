@@ -192,7 +192,7 @@ build_create_image <- function(url=NULL, pageElementProperty=NULL, objectId=NULL
   # Loop through the length of slide object ids
   iterator <- 1
   while(iterator <= length(pageElementProperty)){
-    create_image_list <- list(createTable = list(elementProperties = pageElementProperty[[iterator]],
+    create_image_list <- list(createImage = list(elementProperties = pageElementProperty[[iterator]],
                                                  url = url[iterator]))
     requests_list[[iterator]] <- create_image_list
     iterator <- iterator + 1
