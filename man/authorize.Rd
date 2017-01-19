@@ -7,7 +7,13 @@
 authorize(client.id = getOption("slides.client.id"),
   client.secret = getOption("slides.client.secret"))
 }
+\arguments{
+\item{client.id}{OAuth client ID. This is obtained from Google API Credentials}
+
+\item{client.secret}{OAuth client secret. This is obtained from Google API Credentials}
+}
 \description{
-This is a function to authorize the R package to access
+This is a function to authorize the R package to access the Googleslides API. If no
+client.id and client.secret is provided, the package would provide predefined values.
 }
 
