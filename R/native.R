@@ -1,5 +1,5 @@
 #' Create and upload data into a table in slides
-#' @description This operation can only occur one at a time
+#' @description This function takes in one single
 #' @inheritParams build_create_table
 #' @inheritParams dataframe_convert
 #' @inheritParams post_batchUpdate
@@ -12,7 +12,7 @@ create_data_table <- function(id=NULL, pageElementProperty=NULL, data=NULL, head
     rows <- rows + 1
   }
   columns <- ncol(data)
-  requests_list <- build_create_table(pageElementProperty[[1]], rows, columns)
+  requests_list <- build_create_table(pageElementProperty, rows, columns)
   result_list <- post_batchUpdate(id, requests_list)
   # Get the object id
   objectId <- result_list$replies$createTable$objectId
