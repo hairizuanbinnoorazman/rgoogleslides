@@ -1,26 +1,3 @@
-#' Building replace all text request
-#' @param replaceText A character vector of text that would replace the ones in the text parameter.
-#' The order of the replaceText matters
-#' @param text A character vector of text that would replaced by the ones in the replaceText parameter.
-#' The order of the text matters
-#' @param matchCase A boolean that takes in only TRUE or FALSE only. This would be applied across all
-#' requests
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
-#' @export
-build_replace_all_text <- function(replaceText=NULL, text=NULL, matchCase=TRUE, requests_list=NULL){
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
-  }
-  iterator <- 1
-  while(iterator <= length(replaceText)){
-    replace_all_text_list <- list(replaceAllText = list(replaceText = replaceText[iterator], containsText = list(text = text[iterator], matchCase = matchCase)))
-    requests_list[[iterator]] <- replace_all_text_list
-    iterator <- iterator + 1
-  }
-  return(requests_list)
-}
-
 #' Building create slide request
 #' @param no_of_slides A number to indicate the number of slides that is to be added
 #' @param insertionIndex A numeric vector on where the slide is to be added
@@ -69,6 +46,31 @@ build_create_slide <- function(no_of_slides=1, insertionIndex=NULL,
   }
   return(requests_list)
 }
+
+
+#' Building replace all text request
+#' @param replaceText A character vector of text that would replace the ones in the text parameter.
+#' The order of the replaceText matters
+#' @param text A character vector of text that would replaced by the ones in the replaceText parameter.
+#' The order of the text matters
+#' @param matchCase A boolean that takes in only TRUE or FALSE only. This would be applied across all
+#' requests
+#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
+#' @export
+build_replace_all_text <- function(replaceText=NULL, text=NULL, matchCase=TRUE, requests_list=NULL){
+  if(is.null(requests_list)){
+    warning("No/Invalid request_list provided. request_list reinitialized")
+    requests_list <- list()
+  }
+  iterator <- 1
+  while(iterator <= length(replaceText)){
+    replace_all_text_list <- list(replaceAllText = list(replaceText = replaceText[iterator], containsText = list(text = text[iterator], matchCase = matchCase)))
+    requests_list[[iterator]] <- replace_all_text_list
+    iterator <- iterator + 1
+  }
+  return(requests_list)
+}
+
 
 #' Building insert text request
 #' @param objectId A character vector of objects to insert text into. You can only insert text in
