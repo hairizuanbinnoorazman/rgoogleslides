@@ -2,6 +2,7 @@
 
 export(authorize)
 export(build_create_image)
+export(build_create_shape)
 export(build_create_slide)
 export(build_create_table)
 export(build_delete_object)
