@@ -143,7 +143,7 @@ create_image <- function(id=NULL, url=NULL, pageElementProperty=NULL, objectId=N
 #' @export
 create_shape <- function(id=NULL, shapeType=NULL, pageElementProperty=NULL, objectId=NULL){
   # Create the list object
-  requests_list <- build_create_shape(url, pageElementProperty, objectId)
+  requests_list <- build_create_shape(shapeType, pageElementProperty, objectId)
   result_list <- post_batchUpdate(id, requests_list)
   return(result_list)
 }

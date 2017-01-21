@@ -29,8 +29,8 @@ page_element_property <- function(pageObjectId=NULL,
                                          scaleX=NULL, scaleY=NULL,
                                          shearX=NULL, shearY=NULL,
                                          translateX=NULL, translateY=NULL,
-                                         width_unit="EMU", height_unit="EMU",
-                                         transform_unit="EMU"){
+                                         width_unit="PT", height_unit="PT",
+                                         transform_unit="PT"){
   # Basic data checks - pageObjectId cannot be null
   if(is.null(pageObjectId)){
     stop("pageObjectId cannot be null")
