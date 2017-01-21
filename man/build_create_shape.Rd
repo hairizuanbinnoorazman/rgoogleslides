@@ -8,7 +8,7 @@ build_create_shape(shapeType = NULL, pageElementPropert = NULL,
   objectId = NULL)
 }
 \arguments{
-\item{shapeType}{A list that contains the type of shape that is to be drawn}
+\item{shapeType}{A character vector that contains the shape type for the new shape that is to be created}
 
 \item{objectId}{(Optional) A character vector to name the object created instead of leaving it to Google}
 
