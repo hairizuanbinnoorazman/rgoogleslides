@@ -11,6 +11,17 @@
 #' @param shearY (Optional) A list of numeric vector that tells how the object is to be sheared
 #' @param transformX (Optional) A list of numeric vector that tells how the object is to be located
 #' @param transformY (Optional) A list of numeric vector that tells how the object is to be located
+#' @return A list of Page Element Properties
+#' @examples
+#' \dontrun{
+#' library(googleslides)
+#'
+#' # There is only one compulsory field which is pageObjectId is the 'slide id' of the slide being referenced to
+#' pageElementProperty <- page_element_property("12345")
+#'
+#' # Declaring multiple page slides to be altered
+#' pageElementProperties <- page_element_property(["123", "234"])
+#' }
 #' @export
 page_element_property <- function(pageObjectId=NULL,
                                          width_magnitude=NULL,

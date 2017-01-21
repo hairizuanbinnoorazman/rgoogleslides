@@ -28,9 +28,23 @@ page_element_property(pageObjectId = NULL, width_magnitude = NULL,
 
 \item{transformY}{(Optional) A list of numeric vector that tells how the object is to be located}
 }
+\value{
+A list of Page Element Properties
+}
 \description{
 This property is repeated in various of the request. Hence, to reduce the number of
 times this would appear in the code base, a function is created to handle the creation of this
 list.
+}
+\examples{
+\dontrun{
+library(googleslides)
+
+# There is only one compulsory field which is pageObjectId is the 'slide id' of the slide being referenced to
+pageElementProperty <- page_element_property("12345")
+
+# Declaring multiple page slides to be altered
+pageElementProperties <- page_element_property(["123", "234"])
+}
 }
 
