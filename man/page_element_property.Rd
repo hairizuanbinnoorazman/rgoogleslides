@@ -7,7 +7,7 @@
 page_element_property(pageObjectId = NULL, width_magnitude = NULL,
   height_magnitude = NULL, scaleX = NULL, scaleY = NULL, shearX = NULL,
   shearY = NULL, translateX = NULL, translateY = NULL,
-  width_unit = "EMU", height_unit = "EMU", transform_unit = "EMU")
+  width_unit = "PT", height_unit = "PT", transform_unit = "PT")
 }
 \arguments{
 \item{pageObjectId}{A list of character vectors that contains the page id of the slides}
