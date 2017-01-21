@@ -135,3 +135,15 @@ create_image <- function(id=NULL, url=NULL, pageElementProperty=NULL, objectId=N
   result_list <- post_batchUpdate(id, requests_list)
   return(result_list)
 }
+
+
+#' Insert shape to a page in a slide
+#' @inheritParams build_create_shape
+#' @param id ID of the presenation slide
+#' @export
+create_shape <- function(id=NULL, shapeType=NULL, pageElementProperty=NULL, objectId=NULL){
+  # Create the list object
+  requests_list <- build_create_shape(url, pageElementProperty, objectId)
+  result_list <- post_batchUpdate(id, requests_list)
+  return(result_list)
+}
