@@ -8,7 +8,7 @@
 #' slides API
 #' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
-build_create_slide <- function(no_of_slides=1, insertionIndex=NULL,
+build_create_slide_page <- function(no_of_slides=1, insertionIndex=NULL,
                                layoutId=NULL, predefinedLayout=NULL,
                                objectId=NULL, requests_list=NULL){
   # Check to see if there is any requests_list provided. Else, reinitialize it.
