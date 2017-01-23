@@ -2,6 +2,10 @@
 #' Temporarily available
 #' @export
 get_endpoint <- function(typeOfEndpoint = "slides.endpoint.get", id = NULL, pageObjectId=NULL){
+  # Check if type of endpoint is create presentation slide endpoint
+  if(typeOfEndpoint == "slides.endpoint.create"){
+    return(getOption(typeOfEndpoint))
+  }
   # Check that id parameter is a character, if not throw an error
   if(!is.character(id)){
     stop("id is not a character.")

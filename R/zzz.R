@@ -7,6 +7,7 @@
   op.slides <- list(
     slides.client.id = "10709400262-28lpv43nui21l1172cup6kh68blvkllq.apps.googleusercontent.com",
     slides.client.secret = "FADkDoE_H0B7j-VytEjTbgaU",
+    slides.endpoint.create = "https://slides.googleapis.com/v1/presentations",
     slides.endpoint.get = "https://slides.googleapis.com/v1/presentations/{presentationId}",
     slides.endpoint.batchUpdate = "https://slides.googleapis.com/v1/presentations/{presentationId}:batchUpdate",
     slides.endpoint.page.get = "https://slides.googleapis.com/v1/presentations/{presentationId}/pages/{pageObjectId}"
