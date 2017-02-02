@@ -1,4 +1,4 @@
-#' googleslides: From R to Slides
+#' rgoogleslides: From R to Slides
 #' @description Previously, when one is working with in the Google Ecosystem (Using Google Drive etc),
 #' there is hardly any good workflow of getting the values calculated from R and getting that into
 #' Google Slides. The normal and easy way out would be to just copy your work over but when you have a
@@ -9,5 +9,5 @@
 #' for such cases.
 #'
 #' @docType package
-#' @name googleslides
+#' @name rgoogleslides
 NULL

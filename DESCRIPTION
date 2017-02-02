@@ -1,4 +1,4 @@
-Package: googleslides
+Package: rgoogleslides
 Type: Package
 Title: R interface to Google Slides
 Version: 0.1.0
@@ -9,6 +9,7 @@ License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
     httr (>= 1.1.0)
+    jsonlite
 Suggests:
     knitr,
     rmarkdown
