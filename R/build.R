@@ -133,6 +133,50 @@ build_insert_text <- function(objectId=NULL, rowIndex=NULL, columnIndex=NULL,
   return(requests_list)
 }
 
+
+#' Building delete text request
+#' @param objectId A character vector of objects to insert text into. You can only insert text in
+#' tables and shapes
+#' @param rowIndex A numeric vector of rows to insert the text into
+#' @param columnIndex A numeric vector of columns to insert the text into
+#' @param startIndex The optional zero-based index of the beginning of the collection.
+#' Required for SPECIFIC_RANGE and FROM_START_INDEX ranges.
+#' @param endIndex The optional zero-based index of the end of the collection.
+#' Required for SPECIFIC_RANGE delete mode.
+#' @param type The type of range. Can be the following RANGE_TYPE_UNSPECIFIED, FIXED_RANGE,
+#' FROM_START_INDEX, ALL
+#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
+#' @export
+build_delete_text <- function(objectId=NULL, rowIndex=NULL, columnIndex=NULL,
+                              startIndex = NULL, endIndex = NULL,
+                              type = "ALL", requests_list=NULL){
+  # Check to see if there is any requests_list provided. Else, reinitialize it.
+  if(is.null(requests_list)){
+    warning("No/Invalid request_list provided. request_list reinitialized")
+    requests_list <- list()
+  }
+  # Loop through the object id vector
+  iterator <- 1
+  while(iterator <= length(objectId)){
+    delete_text_list <- list(deleteText = list(objectId = objectId[iterator]))
+    if(!is.null(rowIndex) & !is.null(columnIndex)){
+      delete_text_list[["deleteText"]][["cellLocation"]] <- list()
+      delete_text_list[["deleteText"]][["cellLocation"]][["rowIndex"]] <- rowIndex[iterator]
+      delete_text_list[["deleteText"]][["cellLocation"]][["columnIndex"]] <- columnIndex[iterator]
+    }
+    delete_text_list[["deleteText"]][["textRange"]][["type"]] <- list()
+    delete_text_list[["deleteText"]][["textRange"]][["type"]] <- type[iterator]
+    if(!is.null(startIndex)){
+      delete_text_list[["deleteText"]][["textRange"]][["startIndex"]] <- startIndex[iterator]
+      delete_text_list[["deleteText"]][["textRange"]][["endIndex"]] <- endIndex[iterator]
+    }
+    requests_list[[iterator]] <- delete_text_list
+    iterator <- iterator + 1
+  }
+  return(requests_list)
+}
+
+
 #' Building delete object request
 #' @param objectId A character vector of object ids that is to be deleted from the slides
 #' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
