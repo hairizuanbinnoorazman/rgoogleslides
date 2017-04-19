@@ -8,7 +8,7 @@ Description: More about what it does (maybe more than one line)
 License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
-    httr (>= 1.1.0)
+    httr (>= 1.1.0),
     jsonlite
 Suggests:
     knitr,
