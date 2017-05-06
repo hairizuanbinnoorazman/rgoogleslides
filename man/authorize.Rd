@@ -4,13 +4,13 @@
 \alias{authorize}
 \title{Authorize R package to access Google Slides API}
 \usage{
-authorize(client.id = getOption("slides.client.id"),
-  client.secret = getOption("slides.client.secret"))
+authorize(client_id = getOption("slides.client.id"),
+  client_secret = getOption("slides.client.secret"))
 }
 \arguments{
-\item{client.id}{OAuth client ID. This is obtained from Google API Credentials}
+\item{client_id}{OAuth client ID. This is obtained from Google API Credentials}
 
-\item{client.secret}{OAuth client secret. This is obtained from Google API Credentials}
+\item{client_secret}{OAuth client secret. This is obtained from Google API Credentials}
 }
 \description{
 This is a function to authorize the R package to access the Googleslides API. If no
