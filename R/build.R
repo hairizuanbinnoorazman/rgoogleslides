@@ -17,7 +17,7 @@ add_create_slide_page_request <- function(google_slides_request = NULL, insertio
   create_slide_request <- list(createSlide=list(slideLayoutReference=list()))
 
   # Define object id as slide reference
-  if(!is.null(objectId)){
+  if(!is.null(object_id)){
     create_slide_request[["createSlide"]][["objectId"]] <- object_id
   }
 
@@ -29,7 +29,7 @@ add_create_slide_page_request <- function(google_slides_request = NULL, insertio
   # If layout id is available, use layout id, else use predefinedLayout or else if uses default blank layout
   if(!is.null(layout_id)){
     create_slide_request[["createSlide"]][["slideLayoutReference"]][["layoutId"]] <- layout_id
-  } else if(!is.null(predefinedLayout)){
+  } else if(!is.null(predefined_layout)){
     create_slide_request[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- predefined_layout
   } else {
     create_slide_request[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- "BLANK"

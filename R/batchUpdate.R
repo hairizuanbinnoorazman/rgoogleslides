@@ -14,7 +14,7 @@ commit_to_slides <- function(id, google_slide_request){
   token <- get_token()
   config <- httr::config(token=token)
   # Wrapping body parameters in a requests list
-  body_params <- list(requests=google_slide_request$to_list)
+  body_params <- list(requests=google_slide_request$to_list())
   # Modify slides
   result <- httr::POST(url, config = config, accept_json(), body = body_params, encode = "json")
   # Process results

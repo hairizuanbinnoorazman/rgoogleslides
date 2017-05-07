@@ -5,7 +5,7 @@ google_slide_request_container <- R6Class("GoogleSlidesRequest",
     add_request = function(request){
       self$requests[[length(self$requests) + 1]] <- request
     },
-    get_parameters = function(){
+    to_list = function(){
       return(self$requests)
     }
   )
