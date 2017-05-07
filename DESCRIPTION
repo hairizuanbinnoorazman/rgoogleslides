@@ -9,9 +9,11 @@ License: MIT + file LICENSE
 LazyData: TRUE
 Imports:
     httr (>= 1.1.0),
-    jsonlite
+    jsonlite,
+    assertthat
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
