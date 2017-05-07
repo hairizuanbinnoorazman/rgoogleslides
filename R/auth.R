@@ -20,12 +20,14 @@ get_token <- function() {
 #' @param client_secret OAuth client secret. This is obtained from Google API Credentials
 #' @export
 authorize <- function(client_id = getOption("slides.client.id"),
-                      client_secret = getOption("slides.client.secret")){
-  app <- oauth_app(appname = "googleslides", key = client_id, secret = client_secret)
-  endpoint <- oauth_endpoints("google")
-  token <- oauth2.0_token(endpoint = endpoint, app = app,
-                          scope = c("https://www.googleapis.com/auth/presentations",
-                                    "https://www.googleapis.com/auth/drive.readonly"))
+                      client_secret = getOption("slides.client.secret"), token = NULL){
+  if(!is.null(token)){
+    app <- oauth_app(appname = "googleslides", key = client_id, secret = client_secret)
+    endpoint <- oauth_endpoints("google")
+    token <- oauth2.0_token(endpoint = endpoint, app = app,
+                            scope = c("https://www.googleapis.com/auth/presentations",
+                                      "https://www.googleapis.com/auth/drive.readonly"))
+  }
   set_token(token)
   return(invisible(token))
 }
