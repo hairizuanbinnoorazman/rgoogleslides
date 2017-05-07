@@ -9,22 +9,6 @@ delete_text(id = NULL, objectId = NULL, rowIndex = NULL,
 }
 \arguments{
 \item{id}{ID of the presentation slide}
-
-\item{objectId}{A character vector of objects to insert text into. You can only insert text in
-tables and shapes}
-
-\item{rowIndex}{A numeric vector of rows to insert the text into}
-
-\item{columnIndex}{A numeric vector of columns to insert the text into}
-
-\item{startIndex}{The optional zero-based index of the beginning of the collection.
-Required for SPECIFIC_RANGE and FROM_START_INDEX ranges.}
-
-\item{endIndex}{The optional zero-based index of the end of the collection.
-Required for SPECIFIC_RANGE delete mode.}
-
-\item{type}{The type of range. Can be the following RANGE_TYPE_UNSPECIFIED, FIXED_RANGE,
-FROM_START_INDEX, ALL}
 }
 \description{
 Delete text to shapes/tables

@@ -8,8 +8,6 @@ delete_object(id = NULL, objectId = NULL)
 }
 \arguments{
 \item{id}{ID of the presentation slide}
-
-\item{objectId}{A character vector of object ids that is to be deleted from the slides}
 }
 \description{
 Delete object in slides

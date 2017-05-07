@@ -4,32 +4,33 @@
 \alias{page_element_property}
 \title{Common Property: Page Element Property}
 \usage{
-page_element_property(pageObjectId = NULL, width_magnitude = NULL,
-  height_magnitude = NULL, scaleX = NULL, scaleY = NULL, shearX = NULL,
-  shearY = NULL, translateX = NULL, translateY = NULL,
-  width_unit = "PT", height_unit = "PT", transform_unit = "PT")
+page_element_property(page_object_id = NULL, width_magnitude = NULL,
+  height_magnitude = NULL, scale_x = NULL, scale_y = NULL,
+  shear_x = NULL, shear_y = NULL, translate_x = NULL,
+  translate_y = NULL, width_unit = "PT", height_unit = "PT",
+  transform_unit = "PT")
 }
 \arguments{
-\item{pageObjectId}{A list of character vectors that contains the page id of the slides}
+\item{page_object_id}{A character vector that contains the page id of the slide}
 
-\item{width_magnitude}{(Optional) A list of numeric vector that contains the width of the component}
+\item{width_magnitude}{(Optional) A numeric vector that contains the width of the component}
 
-\item{height_magnitude}{(Optional) A list of numeric vector that contains the height of the component}
+\item{height_magnitude}{(Optional) A numeric vector that contains the height of the component}
 
-\item{scaleX}{(Optional) A list of numeric vector that tells how the object is to be sized}
+\item{scale_x}{(Optional) A numeric vector that tells how the object is to be sized}
 
-\item{scaleY}{(Optional) A list of numeric vector that tells how the object is to be sized}
+\item{scale_y}{(Optional) A numeric vector that tells how the object is to be sized}
 
-\item{shearX}{(Optional) A list of numeric vector that tells how the object is to be sheared}
+\item{shear_x}{(Optional) A numeric vector that tells how the object is to be sheared}
 
-\item{shearY}{(Optional) A list of numeric vector that tells how the object is to be sheared}
+\item{shear_y}{(Optional) A numeric vector that tells how the object is to be sheared}
 
-\item{transformX}{(Optional) A list of numeric vector that tells how the object is to be located}
+\item{transform_x}{(Optional) A numeric vector that tells how the object is to be located}
 
-\item{transformY}{(Optional) A list of numeric vector that tells how the object is to be located}
+\item{transform_y}{(Optional) A numeric vector that tells how the object is to be located}
 }
 \value{
-A list of Page Element Properties
+A PageElementProperty Object
 }
 \description{
 This property is repeated in various of the request. Hence, to reduce the number of
@@ -42,9 +43,6 @@ library(googleslides)
 
 # There is only one compulsory field which is pageObjectId is the 'slide id' of the slide being referenced to
 pageElementProperty <- page_element_property("12345")
-
-# Declaring multiple page slides to be altered
-pageElementProperties <- page_element_property(["123", "234"])
 }
 }
 

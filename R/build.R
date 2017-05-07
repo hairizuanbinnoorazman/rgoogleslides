@@ -1,274 +1,240 @@
-#' Building create slide request
-#' @param no_of_slides A number to indicate the number of slides that is to be added
-#' @param insertionIndex A numeric vector on where the slide is to be added
-#' @param layoutId A character vector that provides guidance on which layout the new slide is to follow
-#' @param predefinedLayout A character vector that provides guidance on which layout the new slide
+#' Add a create slide request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param insertion_index A numeric vector on where the slide is to be added
+#' @param layout_id A character vector that provides guidance on which layout the new slide is to follow
+#' @param predefined_layout A character vector that provides guidance on which layout the new slide
 #' is to follow. The ones declared here
-#' @param objectId A character vector that is to be used to give names to new slides created via the
+#' @param object_id A character vector that is to be used to give names to new slides created via the
 #' slides API
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
-build_create_slide_page <- function(no_of_slides=1, insertionIndex=NULL,
-                               layoutId=NULL, predefinedLayout=NULL,
-                               objectId=NULL, requests_list=NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_create_slide_page_request <- function(google_slides_request = NULL, insertion_index=NULL,
+                               layout_id=NULL, predefined_layout=NULL,
+                               object_id=NULL){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Check to see if length of insertionIndex vector is the same as no of slides
-  if(!is.null(insertionIndex)){
-    if(length(insertionIndex) != no_of_slides){
-      stop("insertionIndex is not the same as the number of slides being added")
-    }
+
+  create_slide_request <- list(createSlide=list(slideLayoutReference=list()))
+
+  # Define object id as slide reference
+  if(!is.null(objectId)){
+    create_slide_request[["createSlide"]][["objectId"]] <- object_id
   }
-  iterator <- 1
-  while(iterator <= no_of_slides){
-    create_slide_list <- list(createSlide=list(slideLayoutReference=list()))
-    # Define object id as slide reference
-    if(!is.null(objectId)){
-      create_slide_list[["createSlide"]][["objectId"]] <- objectId[iterator]
-    }
-    # Define insertion index on where the slides to be appended
-    if(!is.null(insertionIndex)){
-      create_slide_list[["createSlide"]][["insertionIndex"]] <- insertionIndex[iterator]
-    }
-    # If layout id is available, use layout id, else use predefinedLayout or else if uses default blank layout
-    if(!is.null(layoutId)){
-      create_slide_list[["createSlide"]][["slideLayoutReference"]][["layoutId"]] <- layoutId[iterator]
-    } else if(!is.null(predefinedLayout)){
-      create_slide_list[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- predefinedLayout[iterator]
-    } else {
-      create_slide_list[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- "BLANK"
-    }
-    requests_list[[iterator]] <- create_slide_list
-    iterator <- iterator + 1
+
+  # Define insertion index on where the slides to be appended
+  if(!is.null(insertion_index)){
+    create_slide_request[["createSlide"]][["insertionIndex"]] <- insertion_index
   }
-  return(requests_list)
+
+  # If layout id is available, use layout id, else use predefinedLayout or else if uses default blank layout
+  if(!is.null(layout_id)){
+    create_slide_request[["createSlide"]][["slideLayoutReference"]][["layoutId"]] <- layout_id
+  } else if(!is.null(predefinedLayout)){
+    create_slide_request[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- predefined_layout
+  } else {
+    create_slide_request[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- "BLANK"
+  }
+
+  google_slides_request$add_request(create_slide_request)
+  return(google_slides_request)
 }
 
 
-#' Building create shape request
+#' Add a create shape request
 #' @description This function builds up the request for creating shapes within Googleslides via the API.
-#' @param shapeType A character vector that contains the shape type for the new shape that is to be created
-#' @param pageElementProperty A list that contains a page element property. The page element is to be
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param shape_type A character vector that contains the shape type for the new shape that is to be created
+#' @param page_element_property A list that contains a page element property. The page element is to be
 #' generated by the page_element_property function in this package. IT IS COMPULSORY TO ADD WIDTH AND HEIGHT AS
 #' PART OF THE page_element_property
-#' @param objectId (Optional) A character vector to name the object created instead of leaving it to Google
+#' @param object_id (Optional) A character vector to name the object created instead of leaving it to Google
 #' @export
-build_create_shape <- function(shapeType = NULL, pageElementProperty = NULL, objectId = NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_create_shape_request <- function(google_slides_request = NULL, shape_type = NULL, page_element_property = NULL, object_id = NULL){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Loop through the length of slide object ids
-  iterator <- 1
-  while(iterator <= length(pageElementProperty)){
-    create_shape_list <- list(createShape = list(elementProperties = pageElementProperty[[iterator]],
-                                                 shapeType = shapeType[iterator]))
-    requests_list[[iterator]] <- create_shape_list
-    iterator <- iterator + 1
-  }
-  return(requests_list)
+  # Input Validation
+  assert_that(is.character(shape_type))
+
+  create_shape_request <- list(createShape = list(elementProperties = page_element_property$to_list,
+                                               shapeType = shapeType))
+  google_slides_request$add_request(create_shape_request)
+  return(google_slides_request)
+
 }
 
 
-#' Building replace all text request
-#' @param replaceText A character vector of text that would replace the ones in the text parameter.
+#' Add a replace all text request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param replace_text A character vector of text that would replace the ones in the text parameter.
 #' The order of the replaceText matters
 #' @param text A character vector of text that would replaced by the ones in the replaceText parameter.
 #' The order of the text matters
-#' @param matchCase A boolean that takes in only TRUE or FALSE only. This would be applied across all
+#' @param match_case A boolean that takes in only TRUE or FALSE only. This would be applied across all
 #' requests
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
+#' @importFrom assertthat assert_that
 #' @export
-build_replace_all_text <- function(replaceText=NULL, text=NULL, matchCase=TRUE, requests_list=NULL){
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_replace_all_text_request <- function(google_slides_request = NULL, replace_text=NULL, text=NULL, match_case=TRUE){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  iterator <- 1
-  while(iterator <= length(replaceText)){
-    replace_all_text_list <- list(replaceAllText = list(replaceText = replaceText[iterator], containsText = list(text = text[iterator], matchCase = matchCase)))
-    requests_list[[iterator]] <- replace_all_text_list
-    iterator <- iterator + 1
-  }
-  return(requests_list)
+  # Input Validation
+  assert_that(is.character(replace_text))
+  assert_that(is.character(text))
+  assert_that(is.logical(match_case))
+
+  replace_all_text_list <- list(replaceAllText = list(replaceText = replace_text,
+                                                      containsText = list(text = text, matchCase = match_case)))
+  google_slides_request$add_request(replace_all_text_list)
+  return(google_slides_request)
 }
 
 
-#' Building insert text request
-#' @param objectId A character vector of objects to insert text into. You can only insert text in
+#' Add an insert text request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param object_id A character vector of objects to insert text into. You can only insert text in
 #' tables and shapes
-#' @param rowIndex A numeric vector of rows to insert the text into
-#' @param columnIndex A numeric vector of columns to insert the text into
+#' @param row_index A numeric vector of row to insert the text into
+#' @param column_index A numeric vector of column to insert the text into
 #' @param text A character vector of text which is to be inserted into the shape or table
-#' @param insertionIndex A numeric vector which indicate the starting point of how the text
+#' @param insertion_index A numeric vector which indicate the starting point of how the text
 #' is to be inserted
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
-build_insert_text <- function(objectId=NULL, rowIndex=NULL, columnIndex=NULL,
-                              text=NULL, insertionIndex=NULL, requests_list=NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_insert_text_request <- function(google_slides_request = NULL, object_id=NULL,
+                              row_index=NULL, column_index=NULL,
+                              text=NULL, insertion_index=NULL){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Loop through the object id vector
-  iterator <- 1
-  while(iterator <= length(objectId)){
-    insert_text_list <- list(insertText = list(objectId = objectId[iterator], text = text[iterator]))
-    if(!is.null(rowIndex) & !is.null(columnIndex)){
-      insert_text_list[["insertText"]][["cellLocation"]] = list()
-      insert_text_list[["insertText"]][["cellLocation"]][["rowIndex"]] <- rowIndex[iterator]
-      insert_text_list[["insertText"]][["cellLocation"]][["columnIndex"]] <- columnIndex[iterator]
-    }
-    if(!is.null(insertionIndex)){
-      insert_text_list[["insertText"]][["insertionIndex"]] <- insertionIndex[iterator]
-    }
-    requests_list[[iterator]] <- insert_text_list
-    iterator <- iterator + 1
+  insert_text_request <- list(insertText = list(objectId = object_id, text = text))
+  if(!is.null(rowIndex) & !is.null(columnIndex)){
+    insert_text_request[["insertText"]][["cellLocation"]] = list()
+    insert_text_request[["insertText"]][["cellLocation"]][["rowIndex"]] <- row_index
+    insert_text_request[["insertText"]][["cellLocation"]][["columnIndex"]] <- column_index
   }
-  return(requests_list)
+  if(!is.null(insertionIndex)){
+    insert_text_request[["insertText"]][["insertionIndex"]] <- insertion_index
+  }
+  google_slides_request$add_request(insert_text_request)
+  return(google_slides_request)
 }
 
 
-#' Building delete text request
-#' @param objectId A character vector of objects to insert text into. You can only insert text in
+#' Add a delete text request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param object_id A character vector of objects to insert text into. You can only insert text in
 #' tables and shapes
-#' @param rowIndex A numeric vector of rows to insert the text into
-#' @param columnIndex A numeric vector of columns to insert the text into
-#' @param startIndex The optional zero-based index of the beginning of the collection.
+#' @param row_index A numeric vector of row to insert the text into
+#' @param column_index A numeric vector of column to insert the text into
+#' @param start_index The optional zero-based index of the beginning of the collection.
 #' Required for SPECIFIC_RANGE and FROM_START_INDEX ranges.
-#' @param endIndex The optional zero-based index of the end of the collection.
+#' @param end_index The optional zero-based index of the end of the collection.
 #' Required for SPECIFIC_RANGE delete mode.
 #' @param type The type of range. Can be the following RANGE_TYPE_UNSPECIFIED, FIXED_RANGE,
 #' FROM_START_INDEX, ALL
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
-build_delete_text <- function(objectId=NULL, rowIndex=NULL, columnIndex=NULL,
-                              startIndex = NULL, endIndex = NULL,
-                              type = "ALL", requests_list=NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_delete_text_request <- function(google_slides_request = NULL, object_id = NULL,
+                              row_index = NULL, column_index = NULL,
+                              start_index = NULL, end_index = NULL,
+                              type = "ALL"){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Loop through the object id vector
-  iterator <- 1
-  while(iterator <= length(objectId)){
-    delete_text_list <- list(deleteText = list(objectId = objectId[iterator]))
-    if(!is.null(rowIndex) & !is.null(columnIndex)){
-      delete_text_list[["deleteText"]][["cellLocation"]] <- list()
-      delete_text_list[["deleteText"]][["cellLocation"]][["rowIndex"]] <- rowIndex[iterator]
-      delete_text_list[["deleteText"]][["cellLocation"]][["columnIndex"]] <- columnIndex[iterator]
-    }
-    delete_text_list[["deleteText"]][["textRange"]][["type"]] <- list()
-    delete_text_list[["deleteText"]][["textRange"]][["type"]] <- type[iterator]
-    if(!is.null(startIndex)){
-      delete_text_list[["deleteText"]][["textRange"]][["startIndex"]] <- startIndex[iterator]
-      delete_text_list[["deleteText"]][["textRange"]][["endIndex"]] <- endIndex[iterator]
-    }
-    requests_list[[iterator]] <- delete_text_list
-    iterator <- iterator + 1
+  delete_text_request <- list(deleteText = list(objectId = object_id))
+  if(!is.null(row_index) & !is.null(column_index)){
+    delete_text_request[["deleteText"]][["cellLocation"]] <- list()
+    delete_text_request[["deleteText"]][["cellLocation"]][["rowIndex"]] <- row_index
+    delete_text_request[["deleteText"]][["cellLocation"]][["columnIndex"]] <- column_index
   }
-  return(requests_list)
+  delete_text_request[["deleteText"]][["textRange"]][["type"]] <- list()
+  delete_text_request[["deleteText"]][["textRange"]][["type"]] <- type
+  if(!is.null(start_index)){
+    delete_text_request[["deleteText"]][["textRange"]][["startIndex"]] <- start_index
+    delete_text_request[["deleteText"]][["textRange"]][["endIndex"]] <- end_index
+  }
+  google_slides_request$add_request(insert_text_request)
+  return(google_slides_request)
 }
 
 
-#' Building delete object request
+#' Add a delete object request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
 #' @param objectId A character vector of object ids that is to be deleted from the slides
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
-build_delete_object <- function(objectId=NULL, requests_list=NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_delete_object_request <- function(google_slides_request = NULL, object_id=NULL){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Loop through the object id vector
-  iterator <- 1
-  while(iterator <= length(objectId)){
-    delete_object_list <- list(deleteObject = list(objectId = objectId[iterator]))
-    requests_list[[iterator]] <- delete_object_list
-    iterator <- iterator + 1
-  }
-  return(requests_list)
+  delete_object_request <- list(deleteObject = list(objectId = object_id))
+  google_slides_request$add_request(delete_object_request)
+  return(google_slides_request)
 }
 
-#' Building update slides position request
-#' @param slideObjectIds List of Character Vector.
-#' @param insertionIndex Numeric Vector. This is where the slides selected in
-#' slideobjectids parameter is inserted into
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
+#' Add an update slides position request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param slide_object_ids A character vector of slide ids
+#' @param insertion_index Numeric Vector. This is where the slides selected in
+#' slideobjectids parameter is inserted into. The slides would be inserted based on before the arrangement
+#' before the move.
 #' @export
-build_update_slides_position <- function(slideObjectIds=NULL, insertionIndex=NULL,
-                                         requests_list=NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_update_slides_position_request <- function(google_slides_request = NULL, slide_object_ids=NULL,
+                                         insertion_index=NULL){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Loop through the length of slide object ids
-  iterator <- 1
-  while(iterator <= length(slideObjectIds)){
-    update_slides_postion_list <- list(updateSlidesPosition = list(slideObjectIds = list(slideObjectIds[[iterator]]),
-                                       insertionIndex=insertionIndex[iterator]))
-    requests_list[[iterator]] <- update_slides_postion_list
-    iterator <- iterator + 1
-  }
-  return(requests_list)
+  update_slides_postion_request <- list(updateSlidesPosition = list(slideObjectIds = list(slide_object_ids),
+                                     insertionIndex=insertion_index))
+  google_slides_request$add_request(update_slides_postion_request)
+  return(google_slides_request)
 }
 
-#' Building create table request
-#' @param pageElementProperty A list that contains a page element property. The page element is to be
+#' Add a create table request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param page_element_property A list that contains a page element property. The page element is to be
 #' generated by the page_element_property function in this package.
 #' @param rows A numeric vector with the row index of the data to be filled in the table. Only for tables
 #' @param columns A numeric vector with the column index of the data to be filled in the table. Only for tables
 #' @param objectId (Optional) A character vector to name the object created instead of leaving it to Google
-#' @param requests_list A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
-build_create_table <- function(pageElementProperty=NULL, rows=NULL, columns=NULL,
-                               objectId=NULL, requests_list=NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_create_table_request <- function(google_slides_request = NULL, page_element_property = NULL,
+                                     rows = NULL, columns = NULL, object_id = NULL){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Loop through the length of slide object ids
-  iterator <- 1
-  while(iterator <= length(pageElementProperty)){
-    create_table_list <- list(createTable = list(elementProperties = pageElementProperty[[iterator]],
-                                                 rows = rows[iterator],
-                                                 columns = columns[iterator]))
-    requests_list[[iterator]] <- create_table_list
-    iterator <- iterator + 1
-  }
-  return(requests_list)
+  # Validating inputs
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.page_element_property(page_element_property))
+  assert_that(is.numeric(rows))
+  assert_that(is.numeric(columns))
+  assert_that(is.character(object_id) | is.null(object_id))
+
+  create_table_request <- list(createTable = list(elementProperties = page_element_property$to_list,
+                                               rows = rows,
+                                               columns = columns))
+  google_slides_request$add_request(create_table_request)
+  return(google_slides_request)
 }
 
-#' Building create image request
-#' @param url A character vector container a list of image urls that is to be used to add image to
-#' the slides
+#' Add a create image request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param url A character vector container an image url that is to be used to add image to the slides
 #' @param pageElementProperty A list that contains a page element property. The page element is to be
 #' generated by the page_element_property function in this package.
 #' @param objectId (Optional) A character vector to name the object created instead of leaving it to Google
-#' @param requests_list (Optional) A list of requests that is to be passed to the post_batchUpdate function.
 #' @export
-build_create_image <- function(url=NULL, pageElementProperty=NULL, objectId=NULL, requests_list=NULL){
-  # Check to see if there is any requests_list provided. Else, reinitialize it.
-  if(is.null(requests_list)){
-    warning("No/Invalid request_list provided. request_list reinitialized")
-    requests_list <- list()
+add_create_image_request <- function(google_slides_request = NULL, url=NULL,
+                               page_element_property=NULL, object_id=NULL){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
   }
-  # Loop through the length of slide object ids
-  iterator <- 1
-  while(iterator <= length(pageElementProperty)){
-    create_image_list <- list(createImage = list(elementProperties = pageElementProperty[[iterator]],
-                                                 url = url[iterator]))
-    requests_list[[iterator]] <- create_image_list
-    iterator <- iterator + 1
-  }
-  return(requests_list)
+  # Validating inputs
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.character(url))
+  assert_that(is.page_element_property(page_element_property))
+  assert_that(is.character(object_id) | is.null(object_id))
+
+  create_image_request <- list(createImage = list(elementProperties = page_element_property$to_list,
+                                               url = url))
+  google_slides_request$add_request(create_image_request)
+  return(google_slides_request)
 }

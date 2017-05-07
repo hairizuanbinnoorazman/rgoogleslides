@@ -70,6 +70,18 @@ get_google_drive_urls <- function(imageId){
   return(url)
 }
 
+#' Check if the object is a google slide request object
+#' @export
+is.google_slide_request <- function(x){
+  "GoogleSlidesRequest" %in% class(x)
+}
+
+#' Check if the object is a google slide request object
+#' @export
+is.page_element_property <- function(x){
+  "PageElementProperty" %in% class(x)
+}
+
 #' Convenience function to return a value if the value is NA
 #' @description A function that checks and ensure that the value only returns null or a number.
 #' This function can only check one value at a time.

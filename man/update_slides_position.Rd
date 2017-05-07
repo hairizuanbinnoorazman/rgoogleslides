@@ -9,11 +9,6 @@ update_slides_position(id = NULL, slideObjectIds = NULL,
 }
 \arguments{
 \item{id}{ID of the presentation slide}
-
-\item{slideObjectIds}{List of Character Vector.}
-
-\item{insertionIndex}{Numeric Vector. This is where the slides selected in
-slideobjectids parameter is inserted into}
 }
 \description{
 Update slides position

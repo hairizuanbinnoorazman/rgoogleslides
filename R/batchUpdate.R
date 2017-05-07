@@ -1,15 +1,20 @@
-#' Send a POST request to do a batch update on the slides
+#' Commit changes to slides
+#' @importFrom assertthat assert_that
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
 #' @export
-post_batchUpdate <- function(id=NULL, requests_list=NULL){
+commit_to_slides <- function(id, google_slide_request){
+  # Validate input
+  assert_that(is.character(id))
+  assert_that(is.google_slide_request(google_slide_request))
+
   # Get endpoint url
   url <- get_endpoint("slides.endpoint.batchUpdate", id)
   # Get token
   token <- get_token()
   config <- httr::config(token=token)
   # Wrapping body parameters in a requests list
-  body_params <- list(requests=requests_list)
+  body_params <- list(requests=google_slide_request$to_list)
   # Modify slides
   result <- httr::POST(url, config = config, accept_json(), body = body_params, encode = "json")
   # Process results

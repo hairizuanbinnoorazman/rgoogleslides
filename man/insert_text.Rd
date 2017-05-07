@@ -9,18 +9,6 @@ insert_text(id = NULL, objectId = NULL, rowIndex = NULL,
 }
 \arguments{
 \item{id}{ID of the presentation slide}
-
-\item{objectId}{A character vector of objects to insert text into. You can only insert text in
-tables and shapes}
-
-\item{rowIndex}{A numeric vector of rows to insert the text into}
-
-\item{columnIndex}{A numeric vector of columns to insert the text into}
-
-\item{text}{A character vector of text which is to be inserted into the shape or table}
-
-\item{insertionIndex}{A numeric vector which indicate the starting point of how the text
-is to be inserted}
 }
 \description{
 Insert text to shapes/tables
