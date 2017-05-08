@@ -10,7 +10,8 @@ LazyData: TRUE
 Imports:
     httr (>= 1.1.0),
     jsonlite,
-    assertthat
+    assertthat,
+    R6
 Suggests:
     knitr,
     rmarkdown,
