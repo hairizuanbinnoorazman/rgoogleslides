@@ -56,7 +56,7 @@ add_create_shape_request <- function(google_slides_request = NULL, shape_type = 
   # Input Validation
   assert_that(is.character(shape_type))
 
-  create_shape_request <- list(createShape = list(elementProperties = page_element_property$to_list,
+  create_shape_request <- list(createShape = list(elementProperties = page_element_property$to_list(),
                                                shapeType = shapeType))
   google_slides_request$add_request(create_shape_request)
   return(google_slides_request)
@@ -208,7 +208,7 @@ add_create_table_request <- function(google_slides_request = NULL, page_element_
   assert_that(is.numeric(columns))
   assert_that(is.character(object_id) | is.null(object_id))
 
-  create_table_request <- list(createTable = list(elementProperties = page_element_property$to_list,
+  create_table_request <- list(createTable = list(elementProperties = page_element_property$to_list(),
                                                rows = rows,
                                                columns = columns))
   google_slides_request$add_request(create_table_request)
@@ -233,7 +233,7 @@ add_create_image_request <- function(google_slides_request = NULL, url=NULL,
   assert_that(is.page_element_property(page_element_property))
   assert_that(is.character(object_id) | is.null(object_id))
 
-  create_image_request <- list(createImage = list(elementProperties = page_element_property$to_list,
+  create_image_request <- list(createImage = list(elementProperties = page_element_property$to_list(),
                                                url = url))
   google_slides_request$add_request(create_image_request)
   return(google_slides_request)
