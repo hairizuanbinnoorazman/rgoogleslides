@@ -104,6 +104,9 @@ check_validity <- function(value){
 #' \itemize{
 #'  \item The image is to be scaled without any distortions. No skews etc
 #'  \item The translation coordinates of an image is defined by the top left corner of the image
+#'  \item The following function will not query the Googleslides API to retrieve the page size automatically.
+#'  The user would need to obtain that information and feed it into this function. This is to prevent
+#'  this function from overutilizing the API unnecessarily when utilizing this function
 #' }
 #' @param slide_page_id The id of the slide page that is to be altered
 #' @param slide_page_height The slide page height. It is set to default of 9144000
