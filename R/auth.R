@@ -21,13 +21,11 @@ get_token <- function() {
 #' @export
 authorize <- function(client_id = getOption("slides.client.id"),
                       client_secret = getOption("slides.client.secret"), token = NULL){
-  if(!is.null(token)){
-    app <- oauth_app(appname = "googleslides", key = client_id, secret = client_secret)
-    endpoint <- oauth_endpoints("google")
-    token <- oauth2.0_token(endpoint = endpoint, app = app,
-                            scope = c("https://www.googleapis.com/auth/presentations",
-                                      "https://www.googleapis.com/auth/drive.readonly"))
-  }
+  app <- oauth_app(appname = "googleslides", key = client_id, secret = client_secret)
+  endpoint <- oauth_endpoints("google")
+  token <- oauth2.0_token(endpoint = endpoint, app = app,
+                          scope = c("https://www.googleapis.com/auth/presentations",
+                                    "https://www.googleapis.com/auth/drive.readonly"))
   set_token(token)
   return(invisible(token))
 }
