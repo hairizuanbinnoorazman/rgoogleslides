@@ -233,6 +233,15 @@ add_create_image_request <- function(google_slides_request = NULL, url=NULL,
   assert_that(is.page_element_property(page_element_property))
   assert_that(is.character(object_id) | is.null(object_id))
 
+  # Check if url contains
+  if (!grepl("http", url, fixed = TRUE)){
+    drive_url <- "https://www.googleapis.com/drive/v3/files/<file_id>?alt=media&access_token=<access_token>"
+    access_token <- get_token()$credentials$access_token
+    drive_url <- gsub("<file_id>", url, drive_url, fixed = TRUE)
+    drive_url <- gsub("<access_token>", access_token, drive_url, fixed = TRUE)
+    url <- drive_url
+  }
+
   create_image_request <- list(createImage = list(elementProperties = page_element_property$to_list(),
                                                url = url))
   google_slides_request$add_request(create_image_request)
