@@ -65,7 +65,7 @@ get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
   # Get slide properties
   result <- httr::GET(url, config = config, accept_json())
   result_content <- content(result, "text")
-  result_list <- fromJSON(result_content)
+  result_list <- fromJSON(result_content, simplifyVector = FALSE)
   if(httr::status_code(result) != 200){
     stop(result_list$error$message)
   }
