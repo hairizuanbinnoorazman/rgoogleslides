@@ -72,3 +72,13 @@ get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
   # Process and return results
   return(result_list)
 }
+
+
+#' @importFrom R6 R6Class
+slide_page_container <- R6Class('SlidePage',
+  public = list(
+    initialize = function(slide_page_list_response){
+      self$raw_response <- slide_page_list_response
+    }
+  )
+)
