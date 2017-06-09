@@ -77,8 +77,25 @@ get_slide_page_properties <- function(id = NULL, pageObjectId = NULL){
 #' @importFrom R6 R6Class
 slide_page_container <- R6Class('SlidePage',
   public = list(
+    raw_response = NULL,
     initialize = function(slide_page_list_response){
       self$raw_response <- slide_page_list_response
+    },
+    # Retrieve a list of tables from the raw response
+    get_tables = function(){
+    },
+    # Retrieve a list of text boxes from the raw response
+    get_text_boxes = function(){
+      list_text_boxes <- list()
+      for (item in self$raw_response$pageElements){
+        if (!is.null(item$shape$shapeType)){
+          if (item$shape$shapeType == "TEXT_BOX"){
+            text_box_details <- list(object_id = item$objectId)
+            list_text_boxes[[length(list_text_boxes) + 1]] <- text_box_details
+          }
+        }
+      }
+      return(list_text_boxes)
     }
   )
 )
