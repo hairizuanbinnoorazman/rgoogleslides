@@ -120,6 +120,39 @@ add_insert_text_request <- function(google_slides_request = NULL, object_id=NULL
 }
 
 
+#' Add an insert table row request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param table_object_id The table to insert rows into.
+#' @param row_index The 0-based row index.
+#' @param column_index The 0-based column index.
+#' @param insert_below Whether to insert new rows below the reference cell location. If True, cells will
+#' be inserted below cell reference. If False, cells will be inserted above cell reference.
+#' @param number The number of rows to be inserted. Maximum 20 per request.
+#' @importFrom assertthat assert_that is.number
+#' @export
+add_insert_table_rows_request <- function(google_slides_request = NULL, table_object_id,
+                                    row_index, column_index, insert_below = TRUE,
+                                    number){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
+  }
+  # Check input parameters
+  assert_that(is.character(table_object_id))
+  assert_that(is.number(row_index))
+  assert_that(is.number(column_index))
+  assert_that(is.logical(insert_below))
+  assert_that(is.number(number))
+  insert_table_rows_request <- list(tableObjectId = table_object_id,
+                                    insertBelow = insert_below,
+                                    number = number)
+  insert_table_rows_request[['cellLocation']] <- list()
+  insert_table_rows_request[['cellLocation']][['rowIndex']]  <- row_index
+  insert_table_rows_request[['cellLocation']][['columnIndex']] <- column_index
+  google_slides_request$add_request(insert_table_rows_request)
+  return(google_slides_request)
+}
+
+
 #' Add a delete text request
 #' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
 #' @param object_id A character vector of objects to insert text into. You can only insert text in
