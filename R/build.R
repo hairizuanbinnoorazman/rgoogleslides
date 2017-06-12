@@ -143,9 +143,9 @@ add_insert_table_rows_request <- function(google_slides_request = NULL, table_ob
   assert_that(is.logical(insert_below))
   assert_that(is.number(number))
   assert_that(number <= 20)
-  insert_table_rows_request <- list(tableObjectId = table_object_id,
+  insert_table_rows_request <- list(insertTableRows = list(tableObjectId = table_object_id,
                                     insertBelow = insert_below,
-                                    number = number)
+                                    number = number))
   insert_table_rows_request[['cellLocation']] <- list()
   insert_table_rows_request[['cellLocation']][['rowIndex']]  <- row_index
   insert_table_rows_request[['cellLocation']][['columnIndex']] <- column_index
@@ -177,13 +177,39 @@ add_insert_table_columns_request <- function(google_slides_request = NULL, table
   assert_that(is.logical(insert_right))
   assert_that(is.number(number))
   assert_that(number <= 20)
-  insert_table_columns_request <- list(tableObjectId = table_object_id,
+  insert_table_columns_request <- list(insertTableColumns = list(tableObjectId = table_object_id,
                                     insertRight = insert_right,
-                                    number = number)
+                                    number = number))
   insert_table_columns_request[['cellLocation']] <- list()
   insert_table_columns_request[['cellLocation']][['rowIndex']]  <- row_index
   insert_table_columns_request[['cellLocation']][['columnIndex']] <- column_index
   google_slides_request$add_request(insert_table_columns_request)
+  return(google_slides_request)
+}
+
+
+#' Add a delete table row request
+#' @description Deletes a row from a table.
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param table_object_id The table to delete a row from.
+#' @param row_index The 0-based row index.
+#' @param column_index The 0-based column index.
+#' @importFrom assertthat assert_that
+#' @export
+add_delete_table_row_request <- function(google_slides_request = NULL, table_object_id,
+                                         row_index, column_index){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
+  }
+  # Check input parameters
+  assert_that(is.character(table_object_id))
+  assert_that(is.number(row_index))
+  assert_that(is.number(column_index))
+  delete_table_row_request <- list(deleteTableRow = list(tableObjectId = table_object_id))
+  delete_table_row_request[['cellLocation']] <- list()
+  delete_table_row_request[['cellLocation']][['rowIndex']]  <- row_index
+  delete_table_row_request[['cellLocation']][['columnIndex']] <- column_index
+  google_slides_request$add_request(delete_table_row_request)
   return(google_slides_request)
 }
 
@@ -205,7 +231,7 @@ add_delete_table_column_request <- function(google_slides_request = NULL, table_
   assert_that(is.character(table_object_id))
   assert_that(is.number(row_index))
   assert_that(is.number(column_index))
-  delete_table_column_request <- list(tableObjectId = table_object_id)
+  delete_table_column_request <- list(deleteTableColumn = list(tableObjectId = table_object_id))
   delete_table_column_request[['cellLocation']] <- list()
   delete_table_column_request[['cellLocation']][['rowIndex']]  <- row_index
   delete_table_column_request[['cellLocation']][['columnIndex']] <- column_index
