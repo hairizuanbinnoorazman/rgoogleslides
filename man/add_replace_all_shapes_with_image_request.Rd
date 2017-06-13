@@ -4,11 +4,13 @@
 \alias{add_replace_all_shapes_with_image_request}
 \title{Add a replace all shapes with image request}
 \usage{
-add_replace_all_shapes_with_image_request(google_slide_request = NULL,
+add_replace_all_shapes_with_image_request(google_slides_request = NULL,
   image_url, replace_method = "CENTER_INSIDE", page_object_ids = NULL, text,
   match_case = TRUE)
 }
 \arguments{
+\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+
 \item{image_url}{The image URL. The image is fetched once at insertion time and a copy is stored for display
 inside the presentation. Image must be less than 50mb in size}
 
@@ -20,8 +22,6 @@ wish to enact the change on.}
 \item{text}{The text to search for in the shape or table.}
 
 \item{match_case}{Indicates whether the search should respect case}
-
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
 }
 \description{
 Add a replace all shapes with image request

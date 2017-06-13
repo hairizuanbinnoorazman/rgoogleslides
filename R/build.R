@@ -415,7 +415,7 @@ add_create_video_request <- function(google_slides_request = NULL, id,
 #' @param match_case Indicates whether the search should respect case
 #' @importFrom assertthat assert_that
 #' @export
-add_replace_all_shapes_with_image_request <- function(google_slide_request = NULL, image_url,
+add_replace_all_shapes_with_image_request <- function(google_slides_request = NULL, image_url,
                                                       replace_method = 'CENTER_INSIDE',
                                                       page_object_ids = NULL, text,
                                                       match_case = TRUE){
