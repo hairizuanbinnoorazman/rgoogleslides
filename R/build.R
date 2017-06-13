@@ -392,8 +392,7 @@ add_create_video_request <- function(google_slides_request = NULL, id,
   assert_that(is.character(object_id) | is.null(object_id))
 
   create_video_request <- list(createVideo = list(elementProperties = page_element_property$to_list(),
-                                                  id = id, source = "YOUTUBE",
-                                                  objectId = object_id))
+                                                  id = id, source = "YOUTUBE"))
   google_slides_request$add_request(create_video_request)
   return(google_slides_request)
 }
