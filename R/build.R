@@ -397,3 +397,45 @@ add_create_video_request <- function(google_slides_request = NULL, id,
   return(google_slides_request)
 }
 
+
+#' Add a replace all shapes with image request
+#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param image_url The image URL. The image is fetched once at insertion time and a copy is stored for display
+#' inside the presentation. Image must be less than 50mb in size
+#' @param replace_method The replace method. Accepts 'CENTER_INSIDE' and 'CENTER_CROP'
+#' @param page_object_ids Optional. A character vector that contains the list of slide pages that you
+#' wish to enact the change on.
+#' @param text The text to search for in the shape or table.
+#' @param match_case Indicates whether the search should respect case
+#' @importFrom assertthat assert_that
+#' @export
+add_replace_all_shapes_with_image_request <- function(google_slide_request = NULL, image_url,
+                                                      replace_method = 'CENTER_INSIDE',
+                                                      page_object_ids = NULL, text,
+                                                      match_case = TRUE){
+  if(is.null(google_slides_request)){
+    google_slides_request <- google_slide_request_container$new()
+  }
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.character(image_url))
+  assert_that(is.character(page_object_ids) | is.null(page_object_ids))
+  assert_that(is.character(text))
+  assert_that(is.logical(match_case))
+
+  replace_all_shapes_with_image_request <- list(replaceAllShapesWithImage = list(
+    imageUrl = image_url,
+    replaceMethod = replace_method,
+    containsText = list(
+      text = text,
+      matchCase = match_case
+    )
+  ))
+
+  if (!is.null(page_object_ids)){
+    replace_all_shapes_with_image_request[['replaceAllShapesWithImage']][['pageObjectIds']] <- as.list(page_object_ids)
+  }
+
+  google_slides_request$add_request(replace_all_shapes_with_image_request)
+  return(google_slides_request)
+}
+
