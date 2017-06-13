@@ -135,7 +135,7 @@ aligned_page_element_property <- function(slide_page_id, slide_page_height = 514
   translate_x_adj <- as.integer(slide_page_width/2 -image_width_adj/2)
   translate_y_adj <- as.integer(slide_page_height/2 - image_height_adj/2)
 
-  adj_page_element_property <- page_element_property("p",
+  adj_page_element_property <- page_element_property(slide_page_id,
                                                      height_magnitude = image_height,
                                                      width_magnitude = image_width,
                                                      scale_x = 1, scale_y = 1,
