@@ -111,29 +111,42 @@ check_validity <- function(value){
 #' @param slide_page_id The id of the slide page that is to be altered
 #' @param slide_page_height The slide page height. It is set to default of 9144000
 #' @param slide_page_width The slide page width. It is set to default of 5143500
-#' @param image_height Image height in pt
-#' @param image_width Image width in pt
-#' @param align Alignment mode that is to be selected. For now, only the center mode is available
+#' @param image_height Image height in pt. Optional for align mode 'full'
+#' @param image_width Image width in pt. Optional for align mode 'full'
+#' @param align Alignment mode that is to be selected. 'center' or 'full' is accepted.
 #' @importFrom assertthat assert_that
 #' @export
 aligned_page_element_property <- function(slide_page_id, slide_page_height = 5143500,
                                           slide_page_width = 9144000,
-                                          image_height, image_width, align = "center"){
+                                          image_height = NULL, image_width = NULL, align = "center"){
   # Validate input
   assert_that(is.character(slide_page_id))
   assert_that(is.numeric(slide_page_height))
   assert_that(is.numeric(slide_page_width))
-  assert_that(is.numeric(image_height))
-  assert_that(is.numeric(image_width))
-  assert_that(align %in% c('center'))
+  assert_that(align %in% c('center', 'full'))
 
-  # To convert pt to EMU, use the following calculation: 12700 * 1pt
-  image_height_adj <- 12700 * image_height
-  image_width_adj <- 12700 * image_width
+  if (align == 'center'){
+    assert_that(is.numeric(image_height))
+    assert_that(is.numeric(image_width))
+  } else if (align == 'full') {
+    warning('Image Height and Image Width will be overwritten')
+  }
 
-  # Calculate out translation adj
-  translate_x_adj <- as.integer(slide_page_width/2 -image_width_adj/2)
-  translate_y_adj <- as.integer(slide_page_height/2 - image_height_adj/2)
+
+  if (align == 'center'){
+    # To convert pt to EMU, use the following calculation: 12700 * 1pt
+    image_height_adj <- 12700 * image_height
+    image_width_adj <- 12700 * image_width
+
+    # Calculate out translation adj
+    translate_x_adj <- as.integer(slide_page_width/2 -image_width_adj/2)
+    translate_y_adj <- as.integer(slide_page_height/2 - image_height_adj/2)
+  } else if (align == 'full') {
+    image_height = slide_page_height/12700
+    image_width = slide_page_width/12700
+    translate_x_adj = 0
+    translate_y_adj = 0
+  }
 
   adj_page_element_property <- page_element_property(slide_page_id,
                                                      height_magnitude = image_height,
