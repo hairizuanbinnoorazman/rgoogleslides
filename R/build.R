@@ -87,6 +87,11 @@ add_create_table_request <- function(google_slides_request = NULL, page_element_
   create_table_request <- list(createTable = list(elementProperties = page_element_property$to_list(),
                                                   rows = rows,
                                                   columns = columns))
+
+  if(!is.null(object_id)){
+    create_table_request[['createTable']][['objectId']] <- object_id
+  }
+
   google_slides_request$add_request(create_table_request)
   return(google_slides_request)
 }
