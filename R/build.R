@@ -6,6 +6,7 @@
 #' is to follow. The ones declared here
 #' @param object_id A character vector that is to be used to give names to new slides created via the
 #' slides API
+#' @importFrom assertthat assert_that is.number
 #' @export
 add_create_slide_page_request <- function(google_slides_request = NULL, insertion_index=NULL,
                                layout_id=NULL, predefined_layout=NULL,
@@ -13,6 +14,10 @@ add_create_slide_page_request <- function(google_slides_request = NULL, insertio
   if(is.null(google_slides_request)){
     google_slides_request <- google_slide_request_container$new()
   }
+  assert_that(is.number(insertion_index) | is.null(insertion_index))
+  assert_that(is.string(layout_id) | is.null(layout_id))
+  assert_that(is.string(predefined_layout) | is.null(predefined_layout))
+  assert_that(is.string(object_id) | is.null(object_id))
 
   create_slide_request <- list(createSlide=list(slideLayoutReference=list()))
 
@@ -33,6 +38,10 @@ add_create_slide_page_request <- function(google_slides_request = NULL, insertio
     create_slide_request[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- predefined_layout
   } else {
     create_slide_request[["createSlide"]][["slideLayoutReference"]][["predefinedLayout"]] <- "BLANK"
+  }
+
+  if(!is.null(object_id)){
+    create_slide_request[["objectId"]] <- object_id
   }
 
   google_slides_request$add_request(create_slide_request)
