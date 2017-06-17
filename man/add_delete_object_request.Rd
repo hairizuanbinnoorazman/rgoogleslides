@@ -9,7 +9,7 @@ add_delete_object_request(google_slides_request = NULL, object_id = NULL)
 \arguments{
 \item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
 
-\item{objectId}{A character vector of object ids that is to be deleted from the slides}
+\item{object_id}{A character vector of object ids that is to be deleted from the slides}
 }
 \description{
 Add a delete object request

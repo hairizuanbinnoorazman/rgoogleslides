@@ -6,6 +6,9 @@
 \usage{
 is.page_element_property(x)
 }
+\arguments{
+\item{x}{A page_element_property object created from the rgoogleslides package}
+}
 \description{
 Check if the object is a google slide request object
 }

@@ -2,14 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{get_endpoint}
 \alias{get_endpoint}
-\title{Generate endpoint for the Google Slides API
-Temporarily available}
+\title{Generate endpoint for the Google Slides API}
 \usage{
 get_endpoint(typeOfEndpoint = "slides.endpoint.get", id = NULL,
   pageObjectId = NULL)
 }
 \description{
 Generate endpoint for the Google Slides API
-Temporarily available
 }
 

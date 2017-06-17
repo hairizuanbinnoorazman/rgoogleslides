@@ -12,11 +12,13 @@
 #' @param transform_x (Optional) A numeric vector that tells how the object is to be located
 #' @param transform_y (Optional) A numeric vector that tells how the object is to be located
 #' @return A PageElementProperty Object
+#' @importFrom assertthat assert_that
 #' @examples
 #' \dontrun{
 #' library(googleslides)
 #'
-#' # There is only one compulsory field which is pageObjectId is the 'slide id' of the slide being referenced to
+#' # There is only one compulsory field which is pageObjectId is the
+#' # 'slide id' of the slide being referenced to
 #' pageElementProperty <- page_element_property("12345")
 #' }
 #' @export

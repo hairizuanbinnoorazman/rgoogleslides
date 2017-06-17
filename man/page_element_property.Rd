@@ -41,7 +41,8 @@ list.
 \dontrun{
 library(googleslides)
 
-# There is only one compulsory field which is pageObjectId is the 'slide id' of the slide being referenced to
+# There is only one compulsory field which is pageObjectId is the
+# 'slide id' of the slide being referenced to
 pageElementProperty <- page_element_property("12345")
 }
 }

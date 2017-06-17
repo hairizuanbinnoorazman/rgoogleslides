@@ -1,6 +1,4 @@
 #' Generate endpoint for the Google Slides API
-#' Temporarily available
-#' @export
 get_endpoint <- function(typeOfEndpoint = "slides.endpoint.get", id = NULL, pageObjectId=NULL){
   # Check if type of endpoint is create presentation slide endpoint
   if(typeOfEndpoint == "slides.endpoint.create"){
@@ -26,7 +24,6 @@ get_endpoint <- function(typeOfEndpoint = "slides.endpoint.get", id = NULL, page
 #' Convert dataframe to dataframe with rows and columns
 #' @param data Dataframe of the dataset that is to be converted so that it can be used with the google slides API
 #' @param headers Boolean to indicate whether to convert taking in mind of the headers or not
-#' @export
 dataframe_convert <- function(data=NULL, headers=TRUE){
   temp_dataframe <- data.frame()
   i <- 1
@@ -55,7 +52,6 @@ dataframe_convert <- function(data=NULL, headers=TRUE){
 }
 
 #' Get the list of google drive url
-#' @export
 get_google_drive_urls <- function(imageId){
   access_token <- get_token()$credentials$access_token
   drive_api_url <- "https://www.googleapis.com/drive/v3/files/"
@@ -71,12 +67,14 @@ get_google_drive_urls <- function(imageId){
 }
 
 #' Check if the object is a google slide request object
+#' @param x A google_slide_request object created from the rgoogleslides package
 #' @export
 is.google_slide_request <- function(x){
   "GoogleSlidesRequest" %in% class(x)
 }
 
 #' Check if the object is a google slide request object
+#' @param x A page_element_property object created from the rgoogleslides package
 #' @export
 is.page_element_property <- function(x){
   "PageElementProperty" %in% class(x)
@@ -85,7 +83,6 @@ is.page_element_property <- function(x){
 #' Convenience function to return a value if the value is NA
 #' @description A function that checks and ensure that the value only returns null or a number.
 #' This function can only check one value at a time.
-#' @export
 check_validity <- function(value){
   if(!is.null(value)){
     if(is.na(value)){
