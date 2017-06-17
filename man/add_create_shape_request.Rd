@@ -4,8 +4,8 @@
 \alias{add_create_shape_request}
 \title{Add a create shape request}
 \usage{
-add_create_shape_request(google_slides_request = NULL, shape_type = NULL,
-  page_element_property = NULL, object_id = NULL)
+add_create_shape_request(google_slides_request = NULL, shape_type,
+  page_element_property, object_id = NULL)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
