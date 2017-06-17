@@ -8,7 +8,7 @@ add_delete_table_row_request(google_slides_request = NULL, table_object_id,
   row_index, column_index)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
 \item{table_object_id}{The table to delete a row from.}
 

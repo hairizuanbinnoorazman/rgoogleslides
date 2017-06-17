@@ -5,7 +5,7 @@
 \title{Add an insert text request}
 \usage{
 add_insert_text_request(google_slides_request = NULL, row_index = NULL,
-  column_index = NULL, text, insertion_index = NULL, object_id = NULL)
+  column_index = NULL, text, insertion_index = NULL)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
@@ -20,9 +20,6 @@ optional for shapes}
 
 \item{insertion_index}{(Optional) A numeric vector which indicate the starting point of how the text
 is to be inserted}
-
-\item{object_id}{(Optional) A character vector of objects to insert text into. You can only insert text in
-tables and shapes}
 }
 \description{
 Add an insert text request

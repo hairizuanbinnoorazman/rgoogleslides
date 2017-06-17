@@ -205,7 +205,7 @@ add_insert_table_rows_request <- function(google_slides_request = NULL, table_ob
 
 
 #' Add an insert table column request
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
 #' @param table_object_id The table to insert rows into.
 #' @param row_index The 0-based row index.
 #' @param column_index The 0-based column index.
@@ -220,13 +220,16 @@ add_insert_table_columns_request <- function(google_slides_request = NULL, table
   if(is.null(google_slides_request)){
     google_slides_request <- google_slide_request_container$new()
   }
+
   # Check input parameters
-  assert_that(is.character(table_object_id))
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.string(table_object_id))
   assert_that(is.number(row_index))
   assert_that(is.number(column_index))
   assert_that(is.logical(insert_right))
   assert_that(is.number(number))
   assert_that(number <= 20)
+
   insert_table_columns_request <- list(insertTableColumns = list(tableObjectId = table_object_id,
                                     insertRight = insert_right,
                                     number = number))
@@ -240,7 +243,7 @@ add_insert_table_columns_request <- function(google_slides_request = NULL, table
 
 #' Add a delete table row request
 #' @description Deletes a row from a table.
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
 #' @param table_object_id The table to delete a row from.
 #' @param row_index The 0-based row index.
 #' @param column_index The 0-based column index.
@@ -252,9 +255,11 @@ add_delete_table_row_request <- function(google_slides_request = NULL, table_obj
     google_slides_request <- google_slide_request_container$new()
   }
   # Check input parameters
-  assert_that(is.character(table_object_id))
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.string(table_object_id))
   assert_that(is.number(row_index))
   assert_that(is.number(column_index))
+
   delete_table_row_request <- list(deleteTableRow = list(tableObjectId = table_object_id))
   delete_table_row_request[['cellLocation']] <- list()
   delete_table_row_request[['cellLocation']][['rowIndex']]  <- row_index

@@ -8,7 +8,7 @@ add_insert_table_rows_request(google_slides_request = NULL, table_object_id,
   row_index, column_index, insert_below = TRUE, number)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
 \item{table_object_id}{The table to insert rows into.}
 
