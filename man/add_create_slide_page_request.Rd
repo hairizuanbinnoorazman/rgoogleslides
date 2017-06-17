@@ -9,16 +9,33 @@ add_create_slide_page_request(google_slides_request = NULL,
   object_id = NULL)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
-\item{insertion_index}{A numeric vector on where the slide is to be added}
+\item{insertion_index}{(Optional) A numeric vector on where the slide is to be added. If this value
+is not provided, the new slide will be added at the end of the slides.}
 
-\item{layout_id}{A character vector that provides guidance on which layout the new slide is to follow}
+\item{layout_id}{(Optional) A character vector that provides guidance on which layout the new slide is to follow.
+Either layout id or predefined layout will be used to create the template for the new slide. If layout id
+was not provided, a blank predefined layout will be provided instead.}
 
-\item{predefined_layout}{A character vector that provides guidance on which layout the new slide
-is to follow. The ones declared here}
+\item{predefined_layout}{(Optional) A character vector that provides guidance on which layout the new slide
+is to follow. Some of the values that would be available is as follows:
+\itemize{
+ \item BLANK
+ \item CAPTION_ONLY
+ \item TITLE
+ \item TITLE_AND_BODY
+ \item TITLE_AND_TWO_COLUMNS
+ \item TITLE_ONLY
+ \item SECTION_HEADER
+ \item SECTION_TITLE_AND_DESCRIPTION
+ \item ONE_COLUMN_TEXT
+ \item MAIN_POINT
+ \item BIG_NUMBER
+}
+The default value for this parameter is BLANK}
 
-\item{object_id}{A character vector that is to be used to give names to new slides created via the
+\item{object_id}{(Optional) A character vector that is to be used to give names to new slides created via the
 slides API}
 }
 \description{

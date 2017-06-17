@@ -1,9 +1,7 @@
 #' Create and upload data into a table in slides
 #' @description This function takes in one single page element property and one dataset at each time
 #' for uploading to a single slide
-#' @inheritParams build_create_table
 #' @inheritParams dataframe_convert
-#' @inheritParams post_batchUpdate
 #' @param id ID of the presentation slide
 #' @examples
 #' \dontrun{

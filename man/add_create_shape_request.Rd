@@ -8,7 +8,7 @@ add_create_shape_request(google_slides_request = NULL, shape_type = NULL,
   page_element_property = NULL, object_id = NULL)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
 \item{shape_type}{A character vector that contains the shape type for the new shape that is to be created}
 
