@@ -367,25 +367,38 @@ add_update_slides_position_request <- function(google_slides_request = NULL, sli
 
 
 #' Add a delete text request
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
-#' @param object_id A character vector of objects to insert text into. You can only insert text in
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
+#' @param object_id A string to remove text from. You can only remove text contained in
 #' tables and shapes
-#' @param row_index A numeric vector of row to insert the text into
-#' @param column_index A numeric vector of column to insert the text into
-#' @param start_index The optional zero-based index of the beginning of the collection.
+#' @param row_index (Optional) A numeric vector of row to remove the text from. Only needed if you are deleting
+#' text from a table
+#' @param column_index (Optional) A numeric vector of column to remove the text from. Only needed if you are
+#' deleting text from a table
+#' @param start_index (Optional) The optional zero-based index of the beginning of the collection.
 #' Required for SPECIFIC_RANGE and FROM_START_INDEX ranges.
-#' @param end_index The optional zero-based index of the end of the collection.
+#' @param end_index (Optional) The optional zero-based index of the end of the collection.
 #' Required for SPECIFIC_RANGE delete mode.
-#' @param type The type of range. Can be the following RANGE_TYPE_UNSPECIFIED, FIXED_RANGE,
-#' FROM_START_INDEX, ALL
+#' @param type The type of range. Can be the following FIXED_RANGE,
+#' FROM_START_INDEX, ALL. The default value is ALL
+#' @importFrom assertthat assert_that is.string is.number
 #' @export
-add_delete_text_request <- function(google_slides_request = NULL, object_id = NULL,
+add_delete_text_request <- function(google_slides_request = NULL, object_id,
                               row_index = NULL, column_index = NULL,
                               start_index = NULL, end_index = NULL,
                               type = "ALL"){
   if(is.null(google_slides_request)){
     google_slides_request <- google_slide_request_container$new()
   }
+
+  # Check inputs
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.string(object_id))
+  assert_that(is.number(row_index) | is.null(row_index))
+  assert_that(is.number(column_index) | is.null(column_index))
+  assert_that(is.number(start_index) | is.null(start_index))
+  assert_that(is.number(end_index) | is.null(end_index))
+  assert_that(is.string(type))
+
   delete_text_request <- list(deleteText = list(objectId = object_id))
   if(!is.null(row_index) & !is.null(column_index)){
     delete_text_request[["deleteText"]][["cellLocation"]] <- list()
