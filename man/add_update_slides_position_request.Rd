@@ -8,7 +8,7 @@ add_update_slides_position_request(google_slides_request = NULL,
   slide_object_ids = NULL, insertion_index = NULL)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
 \item{slide_object_ids}{A character vector of slide ids}
 

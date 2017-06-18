@@ -300,22 +300,24 @@ add_delete_table_column_request <- function(google_slides_request = NULL, table_
 
 
 #' Add a replace all text request
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
 #' @param replace_text A character vector of text that would replace the ones in the text parameter.
 #' The order of the replaceText matters
 #' @param text A character vector of text that would replaced by the ones in the replaceText parameter.
 #' The order of the text matters
-#' @param match_case A boolean that takes in only TRUE or FALSE only. This would be applied across all
+#' @param match_case (Optional) A boolean that takes in only TRUE or FALSE only. This would be applied across all
 #' requests
-#' @importFrom assertthat assert_that
+#' @importFrom assertthat assert_that is.string
 #' @export
 add_replace_all_text_request <- function(google_slides_request = NULL, replace_text=NULL, text=NULL, match_case=TRUE){
   if(is.null(google_slides_request)){
     google_slides_request <- google_slide_request_container$new()
   }
+
   # Input Validation
-  assert_that(is.character(replace_text))
-  assert_that(is.character(text))
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.string(replace_text))
+  assert_that(is.string(text))
   assert_that(is.logical(match_case))
 
   replace_all_text_list <- list(replaceAllText = list(replaceText = replace_text,
@@ -326,13 +328,19 @@ add_replace_all_text_request <- function(google_slides_request = NULL, replace_t
 
 
 #' Add a delete object request
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
 #' @param object_id A character vector of object ids that is to be deleted from the slides
+#' @importFrom assertthat assert_that is.string
 #' @export
 add_delete_object_request <- function(google_slides_request = NULL, object_id=NULL){
   if(is.null(google_slides_request)){
     google_slides_request <- google_slide_request_container$new()
   }
+
+  # Check validity of inputs
+  assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.string(object_id))
+
   delete_object_request <- list(deleteObject = list(objectId = object_id))
   google_slides_request$add_request(delete_object_request)
   return(google_slides_request)
@@ -340,7 +348,7 @@ add_delete_object_request <- function(google_slides_request = NULL, object_id=NU
 
 
 #' Add an update slides position request
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
 #' @param slide_object_ids A character vector of slide ids
 #' @param insertion_index Numeric Vector. This is where the slides selected in
 #' slideobjectids parameter is inserted into. The slides would be inserted based on before the arrangement
