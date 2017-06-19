@@ -58,6 +58,7 @@ get_slides_properties <- function(id = NULL){
 #' A raw response provides the actual response via Google API.
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
+#' @importFrom assertthat assert_that is.string
 #' @export
 get_slide_page_properties <- function(id, page_object_id, response = "simple"){
   # Check validity of inputs
