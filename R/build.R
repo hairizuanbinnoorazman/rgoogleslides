@@ -89,6 +89,22 @@ add_create_slide_page_request <- function(google_slides_request = NULL, insertio
 #' PART OF THE page_element_property
 #' @param object_id (Optional) A character vector to name the object created instead of leaving it to Google
 #' @importFrom assertthat assert_that is.string
+#' @examples
+#' \dontrun{
+#' library(rgoogleslides)
+#' rgoogleslides::authorize()
+#'
+#' # Define the presentation slide id (Can be retrieved from the url of the slides)
+#' slides_id <- "<slide-id>"
+#'
+#' slide_page <- page_element_property("p", 200, 300)
+#' request <- add_create_shape_request(shape_type = "RECTANGLE", page_element_property = slide_page)
+#' commit_to_slides(slides_id, request)
+#'
+#' slide_page <- aligned_page_element_property("p", image_height = 200, image_width = 300)
+#' request2 <- add_create_shape_request(shape_type = "STAR_5", page_element_property = slide_page)
+#' commit_to_slides(slides_id, request2)
+#' }
 #' @export
 add_create_shape_request <- function(google_slides_request = NULL, shape_type, page_element_property, object_id = NULL){
   if(is.null(google_slides_request)){
@@ -522,6 +538,15 @@ add_replace_all_shapes_with_image_request <- function(google_slides_request = NU
   assert_that(is.character(page_object_ids) | is.null(page_object_ids))
   assert_that(is.string(text))
   assert_that(is.logical(match_case))
+
+  # Check if url contains
+  if (!grepl("http", image_url, fixed = TRUE)){
+    drive_url <- "https://www.googleapis.com/drive/v3/files/<file_id>?alt=media&access_token=<access_token>"
+    access_token <- get_token()$credentials$access_token
+    drive_url <- gsub("<file_id>", image_url, drive_url, fixed = TRUE)
+    drive_url <- gsub("<access_token>", access_token, drive_url, fixed = TRUE)
+    image_url <- drive_url
+  }
 
   replace_all_shapes_with_image_request <- list(replaceAllShapesWithImage = list(
     imageUrl = image_url,

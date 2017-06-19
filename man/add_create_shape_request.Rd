@@ -21,4 +21,21 @@ PART OF THE page_element_property}
 \description{
 This function builds up the request for creating shapes within Googleslides via the API.
 }
+\examples{
+\dontrun{
+library(rgoogleslides)
+rgoogleslides::authorize()
+
+# Define the presentation slide id (Can be retrieved from the url of the slides)
+slides_id <- "<slide-id>"
+
+slide_page <- page_element_property("p", 200, 300)
+request <- add_create_shape_request(shape_type = "RECTANGLE", page_element_property = slide_page)
+commit_to_slides(slides_id, request)
+
+slide_page <- aligned_page_element_property("p", image_height = 200, image_width = 300)
+request2 <- add_create_shape_request(shape_type = "STAR_5", page_element_property = slide_page)
+commit_to_slides(slides_id, request2)
+}
+}
 
