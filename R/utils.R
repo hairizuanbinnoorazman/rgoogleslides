@@ -1,24 +1,26 @@
 #' Generate endpoint for the Google Slides API
-get_endpoint <- function(typeOfEndpoint = "slides.endpoint.get", id = NULL, pageObjectId=NULL){
+#' @param type_of_endpoint Type of endpoint to convert to url
+#' @param id (Optional) ID of the google slides to manipulate. Optional for slides.endpoint.create
+#' @param page_object_id (Optional) ID of the page slide object to be affected
+#' @importFrom assertthat is.string
+get_endpoint <- function(type_of_endpoint = "slides.endpoint.get", id = NULL, page_object_id=NULL){
   # Check if type of endpoint is create presentation slide endpoint
-  if(typeOfEndpoint == "slides.endpoint.create"){
-    return(getOption(typeOfEndpoint))
+  if(type_of_endpoint == "slides.endpoint.create"){
+    return(getOption(type_of_endpoint))
   }
+
   # Check that id parameter is a character, if not throw an error
-  if(!is.character(id)){
-    stop("id is not a character.")
-  }
+  assert_that(is.string(id))
+
   # Check if type of endpoint is slides.endpoint.page.get
-  if(typeOfEndpoint == "slides.endpoint.page.get"){
+  if(type_of_endpoint == "slides.endpoint.page.get"){
     # Check that pageObjectId parameter is a character, if not throw an error
-    if(!is.character(pageObjectId)){
-      stop("pageObjectId is not a character")
-    }
-    url_temp <- gsub("{presentationId}", id, getOption(typeOfEndpoint), fixed=TRUE)
-    url_temp <- gsub("{pageObjectId}", pageObjectId, url_temp, fixed=TRUE)
+    assert_that(is.string(page_object_id))
+    url_temp <- gsub("{presentationId}", id, getOption(type_of_endpoint), fixed=TRUE)
+    url_temp <- gsub("{pageObjectId}", page_object_id, url_temp, fixed=TRUE)
     return(url_temp)
   }
-  return(gsub("{presentationId}", id, getOption(typeOfEndpoint), fixed=TRUE))
+  return(gsub("{presentationId}", id, getOption(type_of_endpoint), fixed=TRUE))
 }
 
 #' Convert dataframe to dataframe with rows and columns
@@ -48,10 +50,16 @@ dataframe_convert <- function(data=NULL, headers=TRUE){
     i <- i + 1
     j <- 1
   }
+  # Type conversion
+  temp_dataframe$value <- as.character(temp_dataframe$value)
+  temp_dataframe$row <- as.numeric(temp_dataframe$row)
+  temp_dataframe$column <- as.numeric(temp_dataframe$column)
+
   return(temp_dataframe)
 }
 
 #' Get the list of google drive url
+#' @param imageId ID of the image on Google Drive
 get_google_drive_urls <- function(imageId){
   access_token <- get_token()$credentials$access_token
   drive_api_url <- "https://www.googleapis.com/drive/v3/files/"
@@ -81,6 +89,7 @@ is.page_element_property <- function(x){
 }
 
 #' Convenience function to return a value if the value is NA
+#' @param value Value to check if the value is valid. If value is NA, return as NULL instead.
 #' @description A function that checks and ensure that the value only returns null or a number.
 #' This function can only check one value at a time.
 check_validity <- function(value){
