@@ -26,4 +26,19 @@ wish to enact the change on. It can contain multiple values.}
 \description{
 Add a replace all shapes with image request
 }
+\examples{
+\dontrun{
+library(rgoogleslides)
+rgoogleslides::authorize()
+
+# Define the presentation slide id (Can be retrieved from the url of the slides)
+slides_id <- "<slide-id>"
+
+# Define the internal drive image file to be inserted into slides
+file_id <- "<file_id>"
+
+request <- add_replace_all_shapes_with_image_request(image_url = file_id, text = 'aaa')
+commit_to_slides(slides_id, request)
+}
+}
 
