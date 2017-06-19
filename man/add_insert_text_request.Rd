@@ -4,11 +4,13 @@
 \alias{add_insert_text_request}
 \title{Add an insert text request}
 \usage{
-add_insert_text_request(google_slides_request = NULL, row_index = NULL,
-  column_index = NULL, text, insertion_index = NULL)
+add_insert_text_request(google_slides_request = NULL, object_id,
+  row_index = NULL, column_index = NULL, text, insertion_index = NULL)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
+
+\item{object_id}{The ID of the object where the text is to be inserted into}
 
 \item{row_index}{(Optional) A numeric vector of row to insert the text into. This value is only
 optional for shapes}

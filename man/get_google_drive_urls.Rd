@@ -6,6 +6,9 @@
 \usage{
 get_google_drive_urls(imageId)
 }
+\arguments{
+\item{imageId}{ID of the image on Google Drive}
+}
 \description{
 Get the list of google drive url
 }

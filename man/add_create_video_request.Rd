@@ -8,7 +8,7 @@ add_create_video_request(google_slides_request = NULL, id,
   page_element_property, object_id = NULL)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
 \item{id}{The video source's unique identifier for this video. e.g. For YouTube
 video https://www.youtube.com/watch?v=7U3axjORYZ0 , the ID is 7U3axjORYZ0.}

@@ -4,8 +4,15 @@
 \alias{get_endpoint}
 \title{Generate endpoint for the Google Slides API}
 \usage{
-get_endpoint(typeOfEndpoint = "slides.endpoint.get", id = NULL,
-  pageObjectId = NULL)
+get_endpoint(type_of_endpoint = "slides.endpoint.get", id = NULL,
+  page_object_id = NULL)
+}
+\arguments{
+\item{type_of_endpoint}{Type of endpoint to convert to url}
+
+\item{id}{(Optional) ID of the google slides to manipulate. Optional for slides.endpoint.create}
+
+\item{page_object_id}{(Optional) ID of the page slide object to be affected}
 }
 \description{
 Generate endpoint for the Google Slides API

@@ -9,15 +9,15 @@ add_replace_all_shapes_with_image_request(google_slides_request = NULL,
   match_case = TRUE)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
 \item{image_url}{The image URL. The image is fetched once at insertion time and a copy is stored for display
 inside the presentation. Image must be less than 50mb in size}
 
 \item{replace_method}{The replace method. Accepts 'CENTER_INSIDE' and 'CENTER_CROP'}
 
-\item{page_object_ids}{Optional. A character vector that contains the list of slide pages that you
-wish to enact the change on.}
+\item{page_object_ids}{(Optional) A character vector that contains the list of slide pages that you
+wish to enact the change on. It can contain multiple values.}
 
 \item{text}{The text to search for in the shape or table.}
 

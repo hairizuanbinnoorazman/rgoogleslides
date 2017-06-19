@@ -6,6 +6,9 @@
 \usage{
 check_validity(value)
 }
+\arguments{
+\item{value}{Value to check if the value is valid. If value is NA, return as NULL instead.}
+}
 \description{
 A function that checks and ensure that the value only returns null or a number.
 This function can only check one value at a time.
