@@ -133,6 +133,7 @@ add_create_table_request <- function(google_slides_request = NULL, page_element_
 
 #' Add an insert text request
 #' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
+#' @param object_id The ID of the object where the text is to be inserted into
 #' @param row_index (Optional) A numeric vector of row to insert the text into. This value is only
 #' optional for shapes
 #' @param column_index (Optional) A numeric vector of column to insert the text into. This value is only
@@ -142,7 +143,7 @@ add_create_table_request <- function(google_slides_request = NULL, page_element_
 #' is to be inserted
 #' @importFrom assertthat assert_that is.string is.number
 #' @export
-add_insert_text_request <- function(google_slides_request = NULL,
+add_insert_text_request <- function(google_slides_request = NULL, object_id,
                               row_index=NULL, column_index=NULL,
                               text, insertion_index=NULL){
   if(is.null(google_slides_request)){
@@ -150,12 +151,13 @@ add_insert_text_request <- function(google_slides_request = NULL,
   }
 
   assert_that(is.google_slide_request(google_slides_request))
+  assert_that(is.string(object_id))
   assert_that(is.number(row_index) | is.null(row_index))
   assert_that(is.number(column_index) | is.null(column_index))
   assert_that(is.string(text))
   assert_that(is.number(insertion_index) | is.null(insertion_index))
 
-  insert_text_request <- list(insertText = list(text = text))
+  insert_text_request <- list(insertText = list(text = text, objectId = object_id))
   if(!is.null(row_index) & !is.null(column_index)){
     insert_text_request[["insertText"]][["cellLocation"]] = list()
     insert_text_request[["insertText"]][["cellLocation"]][["rowIndex"]] <- row_index
@@ -452,7 +454,7 @@ add_create_image_request <- function(google_slides_request = NULL, page_element_
 
 
 #' Add a create video request
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
 #' @param id The video source's unique identifier for this video. e.g. For YouTube
 #' video https://www.youtube.com/watch?v=7U3axjORYZ0 , the ID is 7U3axjORYZ0.
 #' @param page_element_property A list that contains a page element property. The page element is to be
@@ -484,15 +486,15 @@ add_create_video_request <- function(google_slides_request = NULL, id,
 
 
 #' Add a replace all shapes with image request
-#' @param google_slides_request A Google Slides Request object which is used to manage requests to the API
+#' @param google_slides_request (Optional) A Google Slides Request object which is used to manage requests to the API
 #' @param image_url The image URL. The image is fetched once at insertion time and a copy is stored for display
 #' inside the presentation. Image must be less than 50mb in size
 #' @param replace_method The replace method. Accepts 'CENTER_INSIDE' and 'CENTER_CROP'
-#' @param page_object_ids Optional. A character vector that contains the list of slide pages that you
-#' wish to enact the change on.
+#' @param page_object_ids (Optional) A character vector that contains the list of slide pages that you
+#' wish to enact the change on. It can contain multiple values.
 #' @param text The text to search for in the shape or table.
 #' @param match_case Indicates whether the search should respect case
-#' @importFrom assertthat assert_that
+#' @importFrom assertthat assert_that is.string
 #' @export
 add_replace_all_shapes_with_image_request <- function(google_slides_request = NULL, image_url,
                                                       replace_method = 'CENTER_INSIDE',
@@ -502,9 +504,9 @@ add_replace_all_shapes_with_image_request <- function(google_slides_request = NU
     google_slides_request <- google_slide_request_container$new()
   }
   assert_that(is.google_slide_request(google_slides_request))
-  assert_that(is.character(image_url))
+  assert_that(is.string(image_url))
   assert_that(is.character(page_object_ids) | is.null(page_object_ids))
-  assert_that(is.character(text))
+  assert_that(is.string(text))
   assert_that(is.logical(match_case))
 
   replace_all_shapes_with_image_request <- list(replaceAllShapesWithImage = list(
