@@ -4,7 +4,7 @@
 \alias{get_slides_properties}
 \title{Get Google Slides Properties}
 \usage{
-get_slides_properties(id = NULL)
+get_slides_properties(id)
 }
 \arguments{
 \item{id}{ID of the presentation slide}

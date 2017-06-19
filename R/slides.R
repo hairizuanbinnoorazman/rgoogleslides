@@ -32,8 +32,12 @@ create_slides <- function(title = NULL, full_response = FALSE){
 #' @param id ID of the presentation slide
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
+#' @importFrom assertthat assert_that is.string
 #' @export
-get_slides_properties <- function(id = NULL){
+get_slides_properties <- function(id){
+  # Check validity of inputs
+  assert_that(is.string(id))
+
   # Get endpoint url
   url <- get_endpoint("slides.endpoint.get", id)
   # Get auth token
