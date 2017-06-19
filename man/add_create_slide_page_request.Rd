@@ -41,4 +41,19 @@ slides API}
 \description{
 Add a create slide request
 }
+\examples{
+\dontrun{
+library(rgoogleslides)
+rgoogleslides::authorize()
+
+# Define the presentation slide id (Can be retrieved from the url of the slides)
+slides_id <- "<slide-id>"
+
+requests <- add_create_slide_page_request()
+commit_to_slides(slides_id, requests)
+
+requests2 <- add_create_slide_page_request(predefined_layout = "TITLE")
+commit_to_slides(slides_id, requests2)
+}
+}
 

@@ -24,6 +24,20 @@
 #' @param object_id (Optional) A character vector that is to be used to give names to new slides created via the
 #' slides API
 #' @importFrom assertthat assert_that is.number is.string
+#' @examples
+#' \dontrun{
+#' library(rgoogleslides)
+#' rgoogleslides::authorize()
+#'
+#' # Define the presentation slide id (Can be retrieved from the url of the slides)
+#' slides_id <- "<slide-id>"
+#'
+#' requests <- add_create_slide_page_request()
+#' commit_to_slides(slides_id, requests)
+#'
+#' requests2 <- add_create_slide_page_request(predefined_layout = "TITLE")
+#' commit_to_slides(slides_id, requests2)
+#' }
 #' @export
 add_create_slide_page_request <- function(google_slides_request = NULL, insertion_index=NULL,
                                layout_id=NULL, predefined_layout=NULL,
