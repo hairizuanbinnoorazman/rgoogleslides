@@ -9,8 +9,14 @@
 #' @param scale_y (Optional) A numeric vector that tells how the object is to be sized
 #' @param shear_x (Optional) A numeric vector that tells how the object is to be sheared
 #' @param shear_y (Optional) A numeric vector that tells how the object is to be sheared
-#' @param transform_x (Optional) A numeric vector that tells how the object is to be located
-#' @param transform_y (Optional) A numeric vector that tells how the object is to be located
+#' @param translate_x (Optional) A numeric vector that tells how the object is to be located
+#' @param translate_y (Optional) A numeric vector that tells how the object is to be located
+#' @param width_unit (Optional) A string vector that tells the measurement unit to use to locate the
+#' elements on the slide for the width element
+#' @param height_unit (Optional) A string vector that tells the measurement unit to use to locate the
+#' elements on the slide for the height element
+#' @param transform_unit (Optional) A string vector that tells the measurement unit to use to locate the
+#' elements on the slide for the transform element
 #' @return A PageElementProperty Object
 #' @importFrom assertthat assert_that
 #' @examples
