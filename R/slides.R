@@ -52,16 +52,20 @@ get_slides_properties <- function(id = NULL){
 
 #' Get a single page of a Google Slides property
 #' @param id ID of the presentation slide
-#' @param pageObjectId The page ID of the presentation slide
+#' @param page_object_id The page ID of the presentation slide
 #' @param response Type of response. Values can be "simple" or "raw".
 #' A simple response provides a simplified object to query parts of the slide.
 #' A raw response provides the actual response via Google API.
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
 #' @export
-get_slide_page_properties <- function(id = NULL, pageObjectId = NULL, response = "simple"){
+get_slide_page_properties <- function(id, page_object_id, response = "simple"){
+  # Check validity of inputs
+  assert_that(is.string(id))
+  assert_that(is.string(page_object_id))
+
   # Get endpoint url
-  url <- get_endpoint("slides.endpoint.page.get", id, pageObjectId)
+  url <- get_endpoint("slides.endpoint.page.get", id, page_object_id)
   # Get token
   token <- get_token()
   config <- httr::config(token=token)
