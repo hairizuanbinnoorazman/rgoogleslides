@@ -12,6 +12,12 @@ devtools::install_github("sparklineanalytics/rgoogleslides", build_vignettes = T
 
 If you encounter a bug while using the package, take a screenshot of the error and file an issue on this repository.
 
+# Examples and Blog Posts
+
+The package has undergone several incompatible changes between v0.1.0 to v0.2.0. The current package is being targeted for v0.3.0 release soon
+For latest news and examples of how to use the rgoogleslides package, go to the following blog:
+https://hairizuan.wordpress.com/category/googleslides-r/
+
 # Status of package
 
-This package is currently under construction
+Package is usable and can be used for automating workflows. Package being targeted to hit CRAN sometime by end of this year.
