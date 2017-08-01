@@ -6,6 +6,9 @@
 \usage{
 is.google_slide_request(x)
 }
+\arguments{
+\item{x}{A google_slide_request object created from the rgoogleslides package}
+}
 \description{
 Check if the object is a google slide request object
 }

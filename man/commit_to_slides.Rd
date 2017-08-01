@@ -6,6 +6,11 @@
 \usage{
 commit_to_slides(id, google_slide_request)
 }
+\arguments{
+\item{id}{The slide id of the googleslides to be updated}
+
+\item{google_slide_request}{The google slide request to be applied to the slides}
+}
 \description{
 Commit changes to slides
 }

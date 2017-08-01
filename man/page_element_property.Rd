@@ -25,9 +25,18 @@ page_element_property(page_object_id = NULL, width_magnitude = NULL,
 
 \item{shear_y}{(Optional) A numeric vector that tells how the object is to be sheared}
 
-\item{transform_x}{(Optional) A numeric vector that tells how the object is to be located}
+\item{translate_x}{(Optional) A numeric vector that tells how the object is to be located}
 
-\item{transform_y}{(Optional) A numeric vector that tells how the object is to be located}
+\item{translate_y}{(Optional) A numeric vector that tells how the object is to be located}
+
+\item{width_unit}{(Optional) A string vector that tells the measurement unit to use to locate the
+elements on the slide for the width element}
+
+\item{height_unit}{(Optional) A string vector that tells the measurement unit to use to locate the
+elements on the slide for the height element}
+
+\item{transform_unit}{(Optional) A string vector that tells the measurement unit to use to locate the
+elements on the slide for the transform element}
 }
 \value{
 A PageElementProperty Object
@@ -41,7 +50,8 @@ list.
 \dontrun{
 library(googleslides)
 
-# There is only one compulsory field which is pageObjectId is the 'slide id' of the slide being referenced to
+# There is only one compulsory field which is pageObjectId is the
+# 'slide id' of the slide being referenced to
 pageElementProperty <- page_element_property("12345")
 }
 }

@@ -1,11 +1,13 @@
 #' Commit changes to slides
-#' @importFrom assertthat assert_that
+#' @param id The slide id of the googleslides to be updated
+#' @param google_slide_request The google slide request to be applied to the slides
+#' @importFrom assertthat assert_that is.string
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
 #' @export
 commit_to_slides <- function(id, google_slide_request){
   # Validate input
-  assert_that(is.character(id))
+  assert_that(is.string(id))
   assert_that(is.google_slide_request(google_slide_request))
 
   # Get endpoint url

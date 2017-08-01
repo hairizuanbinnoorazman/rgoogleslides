@@ -4,11 +4,11 @@
 \alias{add_create_shape_request}
 \title{Add a create shape request}
 \usage{
-add_create_shape_request(google_slides_request = NULL, shape_type = NULL,
-  page_element_property = NULL, object_id = NULL)
+add_create_shape_request(google_slides_request = NULL, shape_type,
+  page_element_property, object_id = NULL)
 }
 \arguments{
-\item{google_slides_request}{A Google Slides Request object which is used to manage requests to the API}
+\item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
 
 \item{shape_type}{A character vector that contains the shape type for the new shape that is to be created}
 
@@ -20,5 +20,22 @@ PART OF THE page_element_property}
 }
 \description{
 This function builds up the request for creating shapes within Googleslides via the API.
+}
+\examples{
+\dontrun{
+library(rgoogleslides)
+rgoogleslides::authorize()
+
+# Define the presentation slide id (Can be retrieved from the url of the slides)
+slides_id <- "<slide-id>"
+
+slide_page <- page_element_property("p", 200, 300)
+request <- add_create_shape_request(shape_type = "RECTANGLE", page_element_property = slide_page)
+commit_to_slides(slides_id, request)
+
+slide_page <- aligned_page_element_property("p", image_height = 200, image_width = 300)
+request2 <- add_create_shape_request(shape_type = "STAR_5", page_element_property = slide_page)
+commit_to_slides(slides_id, request2)
+}
 }
 

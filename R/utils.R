@@ -1,32 +1,31 @@
 #' Generate endpoint for the Google Slides API
-#' Temporarily available
-#' @export
-get_endpoint <- function(typeOfEndpoint = "slides.endpoint.get", id = NULL, pageObjectId=NULL){
+#' @param type_of_endpoint Type of endpoint to convert to url
+#' @param id (Optional) ID of the google slides to manipulate. Optional for slides.endpoint.create
+#' @param page_object_id (Optional) ID of the page slide object to be affected
+#' @importFrom assertthat is.string
+get_endpoint <- function(type_of_endpoint = "slides.endpoint.get", id = NULL, page_object_id=NULL){
   # Check if type of endpoint is create presentation slide endpoint
-  if(typeOfEndpoint == "slides.endpoint.create"){
-    return(getOption(typeOfEndpoint))
+  if(type_of_endpoint == "slides.endpoint.create"){
+    return(getOption(type_of_endpoint))
   }
+
   # Check that id parameter is a character, if not throw an error
-  if(!is.character(id)){
-    stop("id is not a character.")
-  }
+  assert_that(is.string(id))
+
   # Check if type of endpoint is slides.endpoint.page.get
-  if(typeOfEndpoint == "slides.endpoint.page.get"){
+  if(type_of_endpoint == "slides.endpoint.page.get"){
     # Check that pageObjectId parameter is a character, if not throw an error
-    if(!is.character(pageObjectId)){
-      stop("pageObjectId is not a character")
-    }
-    url_temp <- gsub("{presentationId}", id, getOption(typeOfEndpoint), fixed=TRUE)
-    url_temp <- gsub("{pageObjectId}", pageObjectId, url_temp, fixed=TRUE)
+    assert_that(is.string(page_object_id))
+    url_temp <- gsub("{presentationId}", id, getOption(type_of_endpoint), fixed=TRUE)
+    url_temp <- gsub("{pageObjectId}", page_object_id, url_temp, fixed=TRUE)
     return(url_temp)
   }
-  return(gsub("{presentationId}", id, getOption(typeOfEndpoint), fixed=TRUE))
+  return(gsub("{presentationId}", id, getOption(type_of_endpoint), fixed=TRUE))
 }
 
 #' Convert dataframe to dataframe with rows and columns
 #' @param data Dataframe of the dataset that is to be converted so that it can be used with the google slides API
 #' @param headers Boolean to indicate whether to convert taking in mind of the headers or not
-#' @export
 dataframe_convert <- function(data=NULL, headers=TRUE){
   temp_dataframe <- data.frame()
   i <- 1
@@ -51,11 +50,16 @@ dataframe_convert <- function(data=NULL, headers=TRUE){
     i <- i + 1
     j <- 1
   }
+  # Type conversion
+  temp_dataframe$value <- as.character(temp_dataframe$value)
+  temp_dataframe$row <- as.numeric(temp_dataframe$row)
+  temp_dataframe$column <- as.numeric(temp_dataframe$column)
+
   return(temp_dataframe)
 }
 
 #' Get the list of google drive url
-#' @export
+#' @param imageId ID of the image on Google Drive
 get_google_drive_urls <- function(imageId){
   access_token <- get_token()$credentials$access_token
   drive_api_url <- "https://www.googleapis.com/drive/v3/files/"
@@ -71,21 +75,23 @@ get_google_drive_urls <- function(imageId){
 }
 
 #' Check if the object is a google slide request object
+#' @param x A google_slide_request object created from the rgoogleslides package
 #' @export
 is.google_slide_request <- function(x){
   "GoogleSlidesRequest" %in% class(x)
 }
 
 #' Check if the object is a google slide request object
+#' @param x A page_element_property object created from the rgoogleslides package
 #' @export
 is.page_element_property <- function(x){
   "PageElementProperty" %in% class(x)
 }
 
 #' Convenience function to return a value if the value is NA
+#' @param value Value to check if the value is valid. If value is NA, return as NULL instead.
 #' @description A function that checks and ensure that the value only returns null or a number.
 #' This function can only check one value at a time.
-#' @export
 check_validity <- function(value){
   if(!is.null(value)){
     if(is.na(value)){
@@ -111,31 +117,44 @@ check_validity <- function(value){
 #' @param slide_page_id The id of the slide page that is to be altered
 #' @param slide_page_height The slide page height. It is set to default of 9144000
 #' @param slide_page_width The slide page width. It is set to default of 5143500
-#' @param image_height Image height in pt
-#' @param image_width Image width in pt
-#' @param align Alignment mode that is to be selected. For now, only the center mode is available
+#' @param image_height Image height in pt. Optional for align mode 'full'
+#' @param image_width Image width in pt. Optional for align mode 'full'
+#' @param align Alignment mode that is to be selected. 'center' or 'full' is accepted.
 #' @importFrom assertthat assert_that
 #' @export
 aligned_page_element_property <- function(slide_page_id, slide_page_height = 5143500,
                                           slide_page_width = 9144000,
-                                          image_height, image_width, align = "center"){
+                                          image_height = NULL, image_width = NULL, align = "center"){
   # Validate input
   assert_that(is.character(slide_page_id))
   assert_that(is.numeric(slide_page_height))
   assert_that(is.numeric(slide_page_width))
-  assert_that(is.numeric(image_height))
-  assert_that(is.numeric(image_width))
-  assert_that(align %in% c('center'))
+  assert_that(align %in% c('center', 'full'))
 
-  # To convert pt to EMU, use the following calculation: 12700 * 1pt
-  image_height_adj <- 12700 * image_height
-  image_width_adj <- 12700 * image_width
+  if (align == 'center'){
+    assert_that(is.numeric(image_height))
+    assert_that(is.numeric(image_width))
+  } else if (align == 'full') {
+    warning('Image Height and Image Width will be overwritten')
+  }
 
-  # Calculate out translation adj
-  translate_x_adj <- as.integer(slide_page_width/2 -image_width_adj/2)
-  translate_y_adj <- as.integer(slide_page_height/2 - image_height_adj/2)
 
-  adj_page_element_property <- page_element_property("p",
+  if (align == 'center'){
+    # To convert pt to EMU, use the following calculation: 12700 * 1pt
+    image_height_adj <- 12700 * image_height
+    image_width_adj <- 12700 * image_width
+
+    # Calculate out translation adj
+    translate_x_adj <- as.integer(slide_page_width/2 -image_width_adj/2)
+    translate_y_adj <- as.integer(slide_page_height/2 - image_height_adj/2)
+  } else if (align == 'full') {
+    image_height = slide_page_height/12700
+    image_width = slide_page_width/12700
+    translate_x_adj = 0
+    translate_y_adj = 0
+  }
+
+  adj_page_element_property <- page_element_property(slide_page_id,
                                                      height_magnitude = image_height,
                                                      width_magnitude = image_width,
                                                      scale_x = 1, scale_y = 1,
