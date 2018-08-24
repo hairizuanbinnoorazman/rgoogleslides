@@ -5,8 +5,8 @@
 \title{Convenience function to return a page element property that aligns said element}
 \usage{
 aligned_page_element_property(slide_page_id, slide_page_height = 5143500,
-  slide_page_width = 9144000, image_height = NULL, image_width = NULL,
-  align = "center")
+  slide_page_width = 9144000, image_height = NULL,
+  image_width = NULL, align = "center")
 }
 \arguments{
 \item{slide_page_id}{The id of the slide page that is to be altered}
@@ -35,4 +35,3 @@ The following pointers are thought of when doing the following calculations.
  this function from overutilizing the API unnecessarily when utilizing this function
 }
 }
-

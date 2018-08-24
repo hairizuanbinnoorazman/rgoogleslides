@@ -4,8 +4,8 @@
 \alias{create_data_table}
 \title{Create and upload data into a table in slides}
 \usage{
-create_data_table(id = NULL, page_element_property = NULL, data = NULL,
-  headers = TRUE)
+create_data_table(id = NULL, page_element_property = NULL,
+  data = NULL, headers = TRUE)
 }
 \arguments{
 \item{id}{ID of the presentation slide}
@@ -29,4 +29,3 @@ slide_page <- page_element_property(['slide-id-2'])
 create_data_table("presentation-slide-id", slide_page, iris[1:5,])
 }
 }
-

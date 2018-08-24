@@ -12,4 +12,3 @@ get_google_drive_urls(imageId)
 \description{
 Get the list of google drive url
 }
-

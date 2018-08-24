@@ -12,4 +12,3 @@ get_slides_properties(id)
 \description{
 Get Google Slides Properties
 }
-

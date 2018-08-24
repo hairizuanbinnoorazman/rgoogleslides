@@ -37,4 +37,3 @@ request <- add_create_video_request(id = youtube_id, page_element_property = pag
 commit_to_slides(slide_id, request)
 }
 }
-

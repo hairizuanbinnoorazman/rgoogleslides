@@ -19,4 +19,3 @@ before the move.}
 \description{
 Add an update slides position request
 }
-

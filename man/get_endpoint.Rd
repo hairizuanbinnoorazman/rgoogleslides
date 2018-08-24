@@ -17,4 +17,3 @@ get_endpoint(type_of_endpoint = "slides.endpoint.get", id = NULL,
 \description{
 Generate endpoint for the Google Slides API
 }
-

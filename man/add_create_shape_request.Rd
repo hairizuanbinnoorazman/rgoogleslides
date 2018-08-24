@@ -38,4 +38,3 @@ request2 <- add_create_shape_request(shape_type = "STAR_5", page_element_propert
 commit_to_slides(slides_id, request2)
 }
 }
-

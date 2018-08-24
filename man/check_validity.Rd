@@ -13,4 +13,3 @@ check_validity(value)
 A function that checks and ensure that the value only returns null or a number.
 This function can only check one value at a time.
 }
-

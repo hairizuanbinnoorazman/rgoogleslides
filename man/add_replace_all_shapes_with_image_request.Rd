@@ -5,8 +5,8 @@
 \title{Add a replace all shapes with image request}
 \usage{
 add_replace_all_shapes_with_image_request(google_slides_request = NULL,
-  image_url, replace_method = "CENTER_INSIDE", page_object_ids = NULL, text,
-  match_case = TRUE)
+  image_url, replace_method = "CENTER_INSIDE", page_object_ids = NULL,
+  text, match_case = TRUE)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
@@ -41,4 +41,3 @@ request <- add_replace_all_shapes_with_image_request(image_url = file_id, text =
 commit_to_slides(slides_id, request)
 }
 }
-

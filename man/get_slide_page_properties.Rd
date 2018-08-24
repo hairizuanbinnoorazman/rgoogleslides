@@ -18,4 +18,3 @@ A raw response provides the actual response via Google API.}
 \description{
 Get a single page of a Google Slides property
 }
-

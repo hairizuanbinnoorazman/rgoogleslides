@@ -4,8 +4,8 @@
 \alias{add_delete_table_row_request}
 \title{Add a delete table row request}
 \usage{
-add_delete_table_row_request(google_slides_request = NULL, table_object_id,
-  row_index, column_index)
+add_delete_table_row_request(google_slides_request = NULL,
+  table_object_id, row_index, column_index)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
@@ -19,4 +19,3 @@ add_delete_table_row_request(google_slides_request = NULL, table_object_id,
 \description{
 Deletes a row from a table.
 }
-

@@ -4,7 +4,8 @@
 \alias{add_delete_object_request}
 \title{Add a delete object request}
 \usage{
-add_delete_object_request(google_slides_request = NULL, object_id = NULL)
+add_delete_object_request(google_slides_request = NULL,
+  object_id = NULL)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}
@@ -14,4 +15,3 @@ add_delete_object_request(google_slides_request = NULL, object_id = NULL)
 \description{
 Add a delete object request
 }
-

@@ -32,4 +32,3 @@ FROM_START_INDEX, ALL. The default value is ALL}
 \description{
 Add a delete text request
 }
-

@@ -14,4 +14,3 @@ create_slides(title = NULL, full_response = FALSE)
 \description{
 Create a new googleslide
 }
-

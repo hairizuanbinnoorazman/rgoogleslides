@@ -56,4 +56,3 @@ requests2 <- add_create_slide_page_request(predefined_layout = "TITLE")
 commit_to_slides(slides_id, requests2)
 }
 }
-

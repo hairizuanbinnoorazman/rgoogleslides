@@ -22,4 +22,3 @@ requests}
 \description{
 Add a replace all text request
 }
-

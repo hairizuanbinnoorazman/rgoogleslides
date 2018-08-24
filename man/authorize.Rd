@@ -16,4 +16,3 @@ authorize(client_id = getOption("slides.client.id"),
 This is a function to authorize the R package to access the Googleslides API. If no
 client.id and client.secret is provided, the package would provide predefined values.
 }
-
