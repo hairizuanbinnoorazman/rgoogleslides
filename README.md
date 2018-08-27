@@ -1,5 +1,7 @@
 # Google Slides for R
 
+[![Travis build status](https://travis-ci.com/hairizuanbinnoorazman/rgoogleslides.svg?branch=master)](https://travis-ci.com/hairizuanbinnoorazman/rgoogleslides)
+
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/hairizuanbinnoorazman/rgoogleslides?branch=master&svg=true)](https://ci.appveyor.com/project/hairizuanbinnoorazman/rgoogleslides)
 
 This package is wrapper around the Google Slides API and it serves to power data flows from R environment to Google Slides.
