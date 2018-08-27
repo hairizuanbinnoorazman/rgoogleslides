@@ -1,5 +1,7 @@
 # Google Slides for R
 
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/hairizuanbinnoorazman/rgoogleslides?branch=master&svg=true)](https://ci.appveyor.com/project/hairizuanbinnoorazman/rgoogleslides)
+
 This package is wrapper around the Google Slides API and it serves to power data flows from R environment to Google Slides.
 
 You can install the package by going through the following:
