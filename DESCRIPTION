@@ -1,6 +1,6 @@
 Package: rgoogleslides
 Type: Package
-Title: R interface to Google Slides
+Title: R Interface to Google Slides
 Version: 0.3.1
 Author: Hairizuan Bin Noorazman
 Maintainer: Hairizuan Noorazman <hairizuanbinnoorazman@gmail.com>
