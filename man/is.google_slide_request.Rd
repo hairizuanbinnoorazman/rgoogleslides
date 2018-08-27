@@ -12,4 +12,3 @@ is.google_slide_request(x)
 \description{
 Check if the object is a google slide request object
 }
-

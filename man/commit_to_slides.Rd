@@ -14,4 +14,3 @@ commit_to_slides(id, google_slide_request)
 \description{
 Commit changes to slides
 }
-

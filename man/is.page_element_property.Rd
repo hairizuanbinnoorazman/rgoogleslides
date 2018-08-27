@@ -12,4 +12,3 @@ is.page_element_property(x)
 \description{
 Check if the object is a google slide request object
 }
-

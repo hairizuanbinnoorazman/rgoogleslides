@@ -55,4 +55,3 @@ library(googleslides)
 pageElementProperty <- page_element_property("12345")
 }
 }
-

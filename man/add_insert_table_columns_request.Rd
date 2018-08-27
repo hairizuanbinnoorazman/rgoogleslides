@@ -24,4 +24,3 @@ be inserted to the right of the cell reference. If False, cells will be inserted
 \description{
 Add an insert table column request
 }
-
