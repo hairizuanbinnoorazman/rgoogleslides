@@ -4,13 +4,10 @@
 \alias{get_slides_properties}
 \title{Get Google Slides Properties}
 \usage{
-get_slides_properties(id, as = NULL)
+get_slides_properties(id)
 }
 \arguments{
 \item{id}{ID of the presentation slide}
-
-\item{as}{desired type of output: raw, text or parsed. Passed to
-\code{\link[httr]{content}}}
 }
 \description{
 Get Google Slides Properties
