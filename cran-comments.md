@@ -1,7 +1,7 @@
 ## Resubmission
 This is a resubmission.
 
-* Remove vignette knitr dependency
+* Remove VignetteBuilder field in Description file as there are currently no Vignettes available in package
 * Adjusted the license file to follow CRAN MIT license format
 
 ## Test environments
