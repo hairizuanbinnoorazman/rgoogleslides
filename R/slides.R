@@ -30,11 +30,13 @@ create_slides <- function(title = NULL, full_response = FALSE){
 
 #' Get Google Slides Properties
 #' @param id ID of the presentation slide
+#' @param as desired type of output: raw, text or parsed. Passed to
+#' \code{\link[httr]{content}}
 #' @importFrom httr config accept_json content
 #' @importFrom jsonlite fromJSON
 #' @importFrom assertthat assert_that is.string
 #' @export
-get_slides_properties <- function(id){
+get_slides_properties <- function(id, as = NULL){
   # Check validity of inputs
   assert_that(is.string(id))
 
@@ -44,14 +46,14 @@ get_slides_properties <- function(id){
   token <- get_token()
   config <- httr::config(token=token)
   # Get slide properties
-  result <- httr::GET(url, config = config, accept_json())
+  result <- httr::GET(url, config = config, httr::accept_json())
   if(httr::status_code(result) != 200){
     stop("ID provided does not point towards any slide")
   }
   # Process and return results
-  result_content <- content(result, "text")
-  result_list <- fromJSON(result_content)
-  return(result_list)
+  result_content <- httr::content(result, as = as)
+  # result_list <- fromJSON(result_content)
+  return(result_content)
 }
 
 #' Get a single page of a Google Slides property
