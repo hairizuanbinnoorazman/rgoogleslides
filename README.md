@@ -20,7 +20,7 @@ If you encounter a bug while using the package, take a screenshot of the error a
 
 The package has undergone several incompatible changes between v0.1.0 to v0.2.0. The current package is being targeted for v0.3.0 release soon
 For latest news and examples of how to use the rgoogleslides package, go to the following blog:
-https://hairizuan.wordpress.com/category/googleslides-r/
+https://www.hairizuan.com/tags/rgoogleslides/
 
 # Status of package
 
