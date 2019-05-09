@@ -15,7 +15,8 @@ create_slides <- function(title = NULL, full_response = FALSE){
   # Modify slides
   result <- httr::POST(url, config = config, accept_json(), body = body_params, encode = "json")
   if(httr::status_code(result) != 200){
-    stop("ID provided does not point towards any slide")
+    message("Cannot create slides")
+    httr::stop_for_status(result)
   }
   # Process and return results
   result_content <- content(result, "text")
@@ -46,7 +47,8 @@ get_slides_properties <- function(id){
   # Get slide properties
   result <- httr::GET(url, config = config, accept_json())
   if(httr::status_code(result) != 200){
-    stop("ID provided does not point towards any slide")
+    message("ID provided does not point towards any slide")
+    httr::stop_for_status(result)
   }
   # Process and return results
   result_content <- content(result, "text")
