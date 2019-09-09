@@ -15,7 +15,8 @@ create_slides <- function(title = NULL, full_response = FALSE){
   # Modify slides
   result <- httr::POST(url, config = config, accept_json(), body = body_params, encode = "json")
   if(httr::status_code(result) != 200){
-    stop("ID provided does not point towards any slide")
+    message("Cannot create slides")
+    httr::stop_for_status(result)
   }
   # Process and return results
   result_content <- content(result, "text")
@@ -46,7 +47,8 @@ get_slides_properties <- function(id){
   # Get slide properties
   result <- httr::GET(url, config = config, accept_json())
   if(httr::status_code(result) != 200){
-    stop("ID provided does not point towards any slide")
+    message("ID provided does not point towards any slide")
+    httr::stop_for_status(result)
   }
   # Process and return results
   result_content <- content(result, "text")
@@ -157,6 +159,40 @@ slide_page_container <- R6Class('SlidePage',
             list_text_boxes <- rbind(list_text_boxes, c(object_id, text_content), stringsAsFactors = FALSE)
           }
         }
+      }
+      if (nrow(list_text_boxes) == 0) {
+        list_text_boxes = data.frame(x=character(0), y = character(0))
+      }
+      names(list_text_boxes) <- c('object_id', 'text_content')
+      return(list_text_boxes)
+    },
+    # Retrieve a list of notes from the raw response
+    get_notes = function() {
+      list_text_boxes <- data.frame(stringsAsFactors = FALSE)
+      for (item in self$raw_response$slideProperties$notesPage$pageElements) {
+        if (!is.null(item$shape$shapeType)) {
+          if (item$shape$shapeType == "TEXT_BOX") {
+            # Retrieve text content
+            text_content <- ""
+            if (!is.null(item$shape$text$textElements)) {
+              for (text_element in item$shape$text$textElements) {
+                text_content <- paste0(text_content, text_element$textRun$content)
+              }
+            }
+
+            # Retrieve object id
+            object_id = item$objectId
+
+            # Concatenate results
+            list_text_boxes <-
+              rbind(list_text_boxes,
+                    c(object_id, text_content),
+                    stringsAsFactors = FALSE)
+          }
+        }
+      }
+      if (nrow(list_text_boxes) == 0) {
+        list_text_boxes = data.frame(x=character(0), y = character(0))
       }
       names(list_text_boxes) <- c('object_id', 'text_content')
       return(list_text_boxes)
