@@ -160,6 +160,9 @@ slide_page_container <- R6Class('SlidePage',
           }
         }
       }
+      if (nrow(list_text_boxes) == 0) {
+        list_text_boxes = data.frame(x=character(0), y = character(0))
+      }
       names(list_text_boxes) <- c('object_id', 'text_content')
       return(list_text_boxes)
     },
@@ -187,6 +190,9 @@ slide_page_container <- R6Class('SlidePage',
                     stringsAsFactors = FALSE)
           }
         }
+      }
+      if (nrow(list_text_boxes) == 0) {
+        list_text_boxes = data.frame(x=character(0), y = character(0))
       }
       names(list_text_boxes) <- c('object_id', 'text_content')
       return(list_text_boxes)
