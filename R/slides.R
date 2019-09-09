@@ -162,6 +162,34 @@ slide_page_container <- R6Class('SlidePage',
       }
       names(list_text_boxes) <- c('object_id', 'text_content')
       return(list_text_boxes)
+    },
+    # Retrieve a list of notes from the raw response
+    get_notes = function() {
+      list_text_boxes <- data.frame(stringsAsFactors = FALSE)
+      for (item in self$raw_response$slideProperties$notesPage$pageElements) {
+        if (!is.null(item$shape$shapeType)) {
+          if (item$shape$shapeType == "TEXT_BOX") {
+            # Retrieve text content
+            text_content <- ""
+            if (!is.null(item$shape$text$textElements)) {
+              for (text_element in item$shape$text$textElements) {
+                text_content <- paste0(text_content, text_element$textRun$content)
+              }
+            }
+
+            # Retrieve object id
+            object_id = item$objectId
+
+            # Concatenate results
+            list_text_boxes <-
+              rbind(list_text_boxes,
+                    c(object_id, text_content),
+                    stringsAsFactors = FALSE)
+          }
+        }
+      }
+      names(list_text_boxes) <- c('object_id', 'text_content')
+      return(list_text_boxes)
     }
   )
 )
