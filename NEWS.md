@@ -1,3 +1,8 @@
+# rgoogleslides 0.3.2
+
+* Get Slide Notes request functionality added
+* Allow passing for additional scopes to token
+
 # rgoogleslides 0.3.1
 
 * Addition of a token parameter to the Authorize method
@@ -13,4 +18,3 @@
 * Add video request function
 * Update documentation for the all the functions accordingly
 * Update documentation for all functions by adding examples
-

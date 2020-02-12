@@ -6,7 +6,11 @@
 
 This package is wrapper around the Google Slides API and it serves to power data flows from R environment to Google Slides.
 
-You can install the package by going through the following:
+The package is available on CRAN. You can install the package using the following:
+
+```
+install.packages("rgoogleslides")
+```
 
 ```
 install.packages("devtools")
@@ -18,10 +22,5 @@ If you encounter a bug while using the package, take a screenshot of the error a
 
 # Examples and Blog Posts
 
-The package has undergone several incompatible changes between v0.1.0 to v0.2.0. The current package is being targeted for v0.3.0 release soon
 For latest news and examples of how to use the rgoogleslides package, go to the following blog:
 https://www.hairizuan.com/tags/rgoogleslides/
-
-# Status of package
-
-Package is usable and can be used for automating workflows. Package being targeted to hit CRAN sometime by end of this year.
