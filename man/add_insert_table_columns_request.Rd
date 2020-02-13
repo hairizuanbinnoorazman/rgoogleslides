@@ -4,8 +4,14 @@
 \alias{add_insert_table_columns_request}
 \title{Add an insert table column request}
 \usage{
-add_insert_table_columns_request(google_slides_request = NULL,
-  table_object_id, row_index, column_index, insert_right = TRUE, number)
+add_insert_table_columns_request(
+  google_slides_request = NULL,
+  table_object_id,
+  row_index,
+  column_index,
+  insert_right = TRUE,
+  number
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

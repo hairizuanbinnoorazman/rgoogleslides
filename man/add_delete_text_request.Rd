@@ -4,9 +4,15 @@
 \alias{add_delete_text_request}
 \title{Add a delete text request}
 \usage{
-add_delete_text_request(google_slides_request = NULL, object_id,
-  row_index = NULL, column_index = NULL, start_index = NULL,
-  end_index = NULL, type = "ALL")
+add_delete_text_request(
+  google_slides_request = NULL,
+  object_id,
+  row_index = NULL,
+  column_index = NULL,
+  start_index = NULL,
+  end_index = NULL,
+  type = "ALL"
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

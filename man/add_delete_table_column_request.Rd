@@ -4,8 +4,12 @@
 \alias{add_delete_table_column_request}
 \title{Add a delete table column request}
 \usage{
-add_delete_table_column_request(google_slides_request = NULL,
-  table_object_id, row_index, column_index)
+add_delete_table_column_request(
+  google_slides_request = NULL,
+  table_object_id,
+  row_index,
+  column_index
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

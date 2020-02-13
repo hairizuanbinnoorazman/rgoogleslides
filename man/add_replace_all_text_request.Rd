@@ -4,8 +4,12 @@
 \alias{add_replace_all_text_request}
 \title{Add a replace all text request}
 \usage{
-add_replace_all_text_request(google_slides_request = NULL,
-  replace_text = NULL, text = NULL, match_case = TRUE)
+add_replace_all_text_request(
+  google_slides_request = NULL,
+  replace_text = NULL,
+  text = NULL,
+  match_case = TRUE
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

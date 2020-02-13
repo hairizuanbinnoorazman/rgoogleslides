@@ -4,8 +4,12 @@
 \alias{add_create_image_request}
 \title{Add a create image request}
 \usage{
-add_create_image_request(google_slides_request = NULL,
-  page_element_property, url, object_id = NULL)
+add_create_image_request(
+  google_slides_request = NULL,
+  page_element_property,
+  url,
+  object_id = NULL
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

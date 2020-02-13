@@ -4,9 +4,13 @@
 \alias{add_create_slide_page_request}
 \title{Add a create slide request}
 \usage{
-add_create_slide_page_request(google_slides_request = NULL,
-  insertion_index = NULL, layout_id = NULL, predefined_layout = NULL,
-  object_id = NULL)
+add_create_slide_page_request(
+  google_slides_request = NULL,
+  insertion_index = NULL,
+  layout_id = NULL,
+  predefined_layout = NULL,
+  object_id = NULL
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

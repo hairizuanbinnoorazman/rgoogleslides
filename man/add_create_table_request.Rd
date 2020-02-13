@@ -4,8 +4,13 @@
 \alias{add_create_table_request}
 \title{Add a create table request}
 \usage{
-add_create_table_request(google_slides_request = NULL,
-  page_element_property, rows, columns, object_id = NULL)
+add_create_table_request(
+  google_slides_request = NULL,
+  page_element_property,
+  rows,
+  columns,
+  object_id = NULL
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

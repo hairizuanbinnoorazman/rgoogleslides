@@ -4,8 +4,11 @@
 \alias{add_update_slides_position_request}
 \title{Add an update slides position request}
 \usage{
-add_update_slides_position_request(google_slides_request = NULL,
-  slide_object_ids = NULL, insertion_index = NULL)
+add_update_slides_position_request(
+  google_slides_request = NULL,
+  slide_object_ids = NULL,
+  insertion_index = NULL
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

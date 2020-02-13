@@ -4,8 +4,12 @@
 \alias{add_create_video_request}
 \title{Add a create video request}
 \usage{
-add_create_video_request(google_slides_request = NULL, id,
-  page_element_property, object_id = NULL)
+add_create_video_request(
+  google_slides_request = NULL,
+  id,
+  page_element_property,
+  object_id = NULL
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

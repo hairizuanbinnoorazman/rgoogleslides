@@ -4,9 +4,14 @@
 \alias{add_insert_text_request}
 \title{Add an insert text request}
 \usage{
-add_insert_text_request(google_slides_request = NULL, object_id,
-  row_index = NULL, column_index = NULL, text,
-  insertion_index = NULL)
+add_insert_text_request(
+  google_slides_request = NULL,
+  object_id,
+  row_index = NULL,
+  column_index = NULL,
+  text,
+  insertion_index = NULL
+)
 }
 \arguments{
 \item{google_slides_request}{(Optional) A Google Slides Request object which is used to manage requests to the API}

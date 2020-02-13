@@ -4,11 +4,20 @@
 \alias{page_element_property}
 \title{Common Property: Page Element Property}
 \usage{
-page_element_property(page_object_id = NULL, width_magnitude = NULL,
-  height_magnitude = NULL, scale_x = NULL, scale_y = NULL,
-  shear_x = NULL, shear_y = NULL, translate_x = NULL,
-  translate_y = NULL, width_unit = "PT", height_unit = "PT",
-  transform_unit = "PT")
+page_element_property(
+  page_object_id = NULL,
+  width_magnitude = NULL,
+  height_magnitude = NULL,
+  scale_x = NULL,
+  scale_y = NULL,
+  shear_x = NULL,
+  shear_y = NULL,
+  translate_x = NULL,
+  translate_y = NULL,
+  width_unit = "PT",
+  height_unit = "PT",
+  transform_unit = "PT"
+)
 }
 \arguments{
 \item{page_object_id}{A character vector that contains the page id of the slide}

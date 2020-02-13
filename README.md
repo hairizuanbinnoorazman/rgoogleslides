@@ -12,6 +12,8 @@ The package is available on CRAN. You can install the package using the followin
 install.packages("rgoogleslides")
 ```
 
+Or, if you would want to use the latest features in the package, you can run the following:
+
 ```
 install.packages("devtools")
 library(devtools)

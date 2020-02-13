@@ -1,23 +1,13 @@
-## Resubmission
-This is a resubmission.
-
-* Remove VignetteBuilder field in Description file as there are currently no Vignettes available in package
-* Adjusted the license file to follow CRAN MIT license format
-
 ## Test environments
-* local OS X install, R 3.3.0
-* Debian Linux, R-devel, GCC (debian-gcc-devel) (on rhub)
+* local OS X install, R 3.6.2
 * macOS 10.11 El Capitan, R-release (experimental) (on rhub)
-* Oracle Solaris 10, x86, 32 bit, R-patched (experimental) (on rhub)
-* Ubuntu Linux 16.04 LTS, R-release, GCC (on rhub)
 * Windows Server 2008 R2 SP1, R-devel, 32/64 bit (on rhub)
-* Windows Server 2008 R2 SP1, R-oldrel, 32/64 bit (on rhub)
-* Windows Server 2008 R2 SP1, R-release, 32/64 bit (on rhub)
-* win-builder (devel)
-* Ubuntu 14.04.5 LTS (on travis-ci), R 3.5.0
+* Ubuntu 16.04.6 LTS (on travis-ci), R 3.6.2 
+* Docker container: rocker/r-devel 
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 
-* This is a new submission.
+R CMD check succeeded
+

@@ -3,7 +3,6 @@
 \docType{package}
 \name{rgoogleslides}
 \alias{rgoogleslides}
-\alias{rgoogleslides-package}
 \title{rgoogleslides: From R to Slides}
 \description{
 Previously, when one is working with in the Google Ecosystem (Using Google Drive etc),
